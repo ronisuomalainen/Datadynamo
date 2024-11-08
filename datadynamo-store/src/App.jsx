@@ -1,12 +1,10 @@
 import { useState } from 'react'
+import Navbar from './components/NavBar.jsx'
 
 function App() {
-
   return (
     <>
-      <h1>
-        Datadynamo best
-      </h1>
+      <Navbar />
     </>
   )
 }
