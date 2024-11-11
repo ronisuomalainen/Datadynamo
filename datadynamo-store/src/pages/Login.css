@@ -1,22 +1,19 @@
-/* Center the login container on the page */
 .login-container {
     max-width: 400px;
-    margin: 100px auto; /* Centers the container and adds space at the top */
+    margin: 100px auto;
     padding: 40px;
-    background-color: #11111B; /* Dark background */
+    background-color: #11111B;
     border-radius: 8px;
     color: #ffffff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   }
   
-  /* Centered title styling */
   .login-container h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #ffffff;
   }
   
-  /* Styling for each form group */
   .form-group {
     margin-bottom: 20px;
   }
@@ -36,7 +33,6 @@
     color: #ffffff;
   }
   
-  /* Login button styling */
   button[type="submit"] {
     width: 100%;
     padding: 10px;
