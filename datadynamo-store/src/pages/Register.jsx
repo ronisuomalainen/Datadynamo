@@ -1,38 +1,43 @@
-import React, { useState } from 'react';
-import '../index.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { addUserToDb } from '../services/supabase_client';
+import React, { useState } from 'react'
+import '../index.css'
+import { useNavigate } from 'react-router-dom'
+import { addUserToDb } from '../services/supabase_client'
 
 const Register = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault()
 
-    // Call the addUserToDb function to insert user into the database
-    const user = await addUserToDb(username, password);
-    if (user) {
-      // If registration is successful, navigate to the /store page
-      navigate('/store');
-    } else {
-      // Handle error case (e.g., invalid input)
-      alert('Rekisteröinti epäonnistui');
-    }
-  };
+    const user = await addUserToDb(username, email, password)
+    navigate('/store')
+    
+  }
 
   return (
     <div className="login-container">
       <h2>Rekisteröidy</h2>
-      <form onSubmit={handleSubmit}> {/* Handle form submission */}
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
             type="text"
             id="username"
             placeholder="Käyttäjätunnus"
             value={username}
-            onChange={(e) => setUsername(e.target.value)} // Handle input changes
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            id="email"
+            placeholder="Sähköposti"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -42,14 +47,14 @@ const Register = () => {
             id="password"
             placeholder="Salasana"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // Handle input changes
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Rekisteröidy</button> {/* Submit the form */}
+        <button type="submit">Rekisteröidy</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
