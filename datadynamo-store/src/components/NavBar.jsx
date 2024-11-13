@@ -1,13 +1,14 @@
 import React from 'react'
 import '../index.css'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   return (
     <nav className="navbar">
         <div className="navbar-left">
-            <span className='company-name'>
+            <Link to="/" className='company-name'>
                 Datadynamo
-            </span>
+            </Link>
         </div>
         <div className='navbar-right'>
             <a href='/profile' className='nav-link'>

@@ -20,31 +20,33 @@ const Register = () => {
   }
 
   return (
-    <div className="login-container">
-      <h2>Rekisteröidy</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            type="email"
-            id="email"
-            placeholder="Sähköposti"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            placeholder="Salasana"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Rekisteröidy</button>
-      </form>
+    <div className='centered-container'>
+      <div className="register-container">
+        <h2>Rekisteröidy</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              placeholder="Sähköposti"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Salasana"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Rekisteröidy</button>
+        </form>
+      </div>
     </div>
   )
 }

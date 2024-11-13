@@ -1,9 +1,25 @@
+/* Global */
 * {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: lightgray;
+}
+
+body, html {
+  background-color: #11111B;
+  margin: 0;
+  padding: 0;
 }
 
 .main-container {
   padding-top: 60px;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  text-align: center;
 }
 
 /* Navbar */
@@ -13,7 +29,6 @@
   align-items: center;
   background-color: #1A253A;
   padding: 10px 20px;
-  color: white;
   position: fixed;
   top: 0;
   left: 0;
@@ -23,6 +38,7 @@
 
 .navbar-left 
 .company-name {
+  text-decoration: none;
   font-size: 24px;
   font-weight: bold;
 }
@@ -34,7 +50,6 @@
 }
 
 .nav-link {
-  color: white;
   text-decoration: none;
   font-size: 16px;
   padding: 8px 12px;
@@ -42,22 +57,22 @@
 }
 
 .nav-link:hover {
-  background-color: #555;
+  background-color: #11111B;
   border-radius: 4px;
 }
 
-/* Login */
-.login-container {
+/* Login and Register */
+.login-container, .register-container {
   max-width: 400px;
-  margin: 100px auto;
+  width: 100%;
   padding: 40px;
-  background-color: #11111B;
+  background-color: #1A253A;
   border-radius: 8px;
-  color: #ffffff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
 }
 
-.login-container h2 {
+.login-container h2, .register-container h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #ffffff;
@@ -95,5 +110,50 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
+  background-color: #6666ff;
+}
+
+/* Welcome */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.welcome-container h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-container p {
+  font-size: 1.2rem;
+  color: #bbbbbb;
+  margin-bottom: 1.5rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4444cc;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
   background-color: #6666ff;
 }
