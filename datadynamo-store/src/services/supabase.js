@@ -1,13 +1,7 @@
-// JSON type definition
-/**
- * @typedef {string | number | boolean | null | { [key: string]: Json | undefined } | Json[]} Json
- */
-
-// Updated database schema structure for `users` table
 const Database = {
     public: {
       Tables: {
-        users: { // Change to `users` table
+        users: {
           Row: {
             created_at: "", // Date string in ISO format
             id: 0,          // Unique integer ID

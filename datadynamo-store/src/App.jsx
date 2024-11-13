@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { supabase } from './services/supabase_client.js'
+
 import Navbar from './components/NavBar.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
@@ -8,6 +10,30 @@ import Profile from './pages/Profile.jsx'
 import Welcome from './pages/Welcome.jsx'
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser()
+
+      if (data?.user) {
+        setUser(data.user)
+      }
+    }
+
+    getUser()
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => {
+      if (authListener && authListener.unsubscribe) {
+        authListener.unsubscribe()
+      }
+    }
+  }, [])
+
   return (
     <Router>
       <Navbar />

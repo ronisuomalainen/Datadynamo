@@ -1,16 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { loginUser } from '../services/supabase_client'
 import '../index.css'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.perventDefault()
+
+    const user = await loginUser(email, password)
+
+    if (user) {
+      navigate('/store')
+    }
+  }
+
   return (
     <div className="login-container">
       <h2>Kirjaudu sisään</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <input type="text" id="username" placeholder="Käyttäjätunnus" required />
+          <input 
+            type="text" 
+            id="email" 
+            placeholder="Sähköposti" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
         </div>
         <div className="form-group">
-          <input type="password" id="password" placeholder="Salasana" required />
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Salasana" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required />
         </div>
         <button type="submit">Kirjaudu</button> 
       </form>

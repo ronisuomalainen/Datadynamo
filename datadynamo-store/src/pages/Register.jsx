@@ -5,16 +5,18 @@ import { addUserToDb } from '../services/supabase_client'
 
 const Register = () => {
   const navigate = useNavigate()
-  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const user = await addUserToDb(username, email, password)
-    navigate('/store')
-    
+    const user = await addUserToDb(email, password)
+    if (user) {
+      navigate('/store')
+    } else {
+      alert('Rekisteröinti epäonnistui')
+    }
   }
 
   return (
@@ -23,17 +25,7 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
-            type="text"
-            id="username"
-            placeholder="Käyttäjätunnus"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
+            type="email"
             id="email"
             placeholder="Sähköposti"
             value={email}
