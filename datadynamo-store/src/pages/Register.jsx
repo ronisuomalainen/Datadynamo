@@ -6,10 +6,16 @@ import { addUserToDb } from '../services/supabase_client'
 const Register = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
+  const [confirmEmail, setConfirmEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (email !== confirmEmail) {
+      alert('Sähköpostiosoitteet eivät täsmää')
+      return
+    }
 
     const user = await addUserToDb(email, password)
     if (user) {
@@ -31,6 +37,16 @@ const Register = () => {
               placeholder="Sähköposti"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              id="confirmEmail"
+              placeholder="Sähköpostiosoite uudelleen"
+              value={confirmEmail}
+              onChange={(e) => setConfirmEmail(e.target.value)}
               required
             />
           </div>

@@ -26,7 +26,7 @@ function App() {
 
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
-      if (!session?.user) {
+      if (!session?.user && !['/login', '/register'].includes(location.pathname)) {
         navigate('/')
       }
     })
@@ -35,6 +35,18 @@ function App() {
       authListener?.subscription?.unsubscribe()
     }
   }, [navigate])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (user) {
+        console.log("Logged in user: ", user.email)
+      } else {
+        console.log("Not logged in")
+      }
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [user])
 
   return (
     <>

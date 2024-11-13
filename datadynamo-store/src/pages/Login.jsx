@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../services/supabase_client'
 import '../index.css'
 
@@ -44,6 +44,9 @@ const Login = () => {
           </div>
           <button type="submit">Kirjaudu</button> 
         </form>
+        <div className='register-text'>
+          <Link to="/register">Rekisteröidy</Link>
+        </div>
       </div>
     </div>
   )
