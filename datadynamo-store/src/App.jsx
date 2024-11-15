@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react'
 import { useNavigate, Route, Routes } from 'react-router-dom'
 import { supabase } from './services/supabase_client.js'
 
-import Navbar from './components/NavBar.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Store from './pages/Store.jsx'
 import Profile from './pages/Profile.jsx'
 import Welcome from './pages/Welcome.jsx'
+
+import Navbar from './components/NavBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import GuestRoute from './components/GuestRoute.jsx'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -50,14 +52,36 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="main-container">
         <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          {/* Guest routes: only accessible if the user is not logged in */}
+          <Route 
+            path="/" 
+            element={
+              <GuestRoute user={user}>
+                <Welcome />
+              </GuestRoute>
+            } 
+          />
+          <Route 
+            path="/register" 
+            element={
+              <GuestRoute user={user}>
+                <Register />
+              </GuestRoute>
+            } 
+          />
+          <Route 
+            path="/login" 
+            element={
+              <GuestRoute user={user}>
+                <Login />
+              </GuestRoute>
+            } 
+          />
 
-          {/* Protected Routes */}
+          {/* Protected routes: only accessible if the user is logged in */}
           <Route
             path="/store"
             element={
