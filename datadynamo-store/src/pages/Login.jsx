@@ -9,12 +9,20 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
-    e.perventDefault()
+    e.preventDefault()
+
+    if (!email || !password) {
+      alert('Sähköposti ja salasana tarvitaan')
+      return
+    }
 
     const user = await loginUser(email, password)
+    console.log('Login result: ', user)
 
     if (user) {
       navigate('/store')
+    } else {
+      alert('Kirjautuminen epäonnistui')
     }
   }
 
@@ -25,7 +33,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input 
-              type="text" 
+              type="email" 
               id="email" 
               placeholder="Sähköposti" 
               value={email}

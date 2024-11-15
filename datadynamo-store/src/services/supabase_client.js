@@ -36,22 +36,29 @@ export async function addUserToDb(email, password) {
   }
 }
 
-export async function loginUser(username, password) {
-  if (!username || !password) {
-    alert("Käyttäjätunnus ja salasana vaaditaan")
-    return
+export async function loginUser(email, password) {
+  if (!email || !password) {
+    alert("Sähköposti ja salasana vaaditaan")
+    return null
   }
 
-  const { user, error } = await supabase.auth.signInWithPassword({
-    email: username,
-    password: password
-  })
+  try {
+    const { data: session, error } = await supabase.auth.signInWithPassword({
+      email, 
+      password
+    })
 
-  if (error) {
-     alert("Tapahtui virhe: " + error.message)
-     return
+    if (error) {
+      alert("Tapahtui virhe: " + error.message)
+      console.error("Login error: ", error)
+      return null
+    }
+
+    console.log("Logged in user: ", session.user.email)
+    return session.user
+  } catch (err) {
+    console.error("Unexpected error: ", err)
+    alert("Odottamaton virhe")
+    return null
   }
-
-  console.log(user)
-  return user
 }
