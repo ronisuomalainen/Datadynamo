@@ -84,6 +84,7 @@ body, html {
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
+  position: relative;
 }
 
 .login-container h2, .register-container h2 {
@@ -127,7 +128,19 @@ button[type="submit"]:hover {
   background-color: #6666ff;
 }
 
-.register-text {
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #757575;
+  font-weight: bold;
+}
+
+.register-text, .login-text {
   margin-top: 10px;
 }
 

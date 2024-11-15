@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../index.css'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addUserToDb } from '../services/supabase_client'
 
 const Register = () => {
@@ -25,9 +25,16 @@ const Register = () => {
     }
   }
 
+  const handleClose = () => {
+    navigate('/')
+  }
+
   return (
     <div className='centered-container'>
       <div className="register-container">
+        
+        <button className='close-button' onClick={handleClose}>x</button>
+
         <h2>Rekisteröidy</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -61,6 +68,10 @@ const Register = () => {
             />
           </div>
           <button type="submit">Rekisteröidy</button>
+          
+          <div className='login-text'>
+            <Link to="/login">Kirjaudu</Link>
+          </div>
         </form>
       </div>
     </div>

@@ -26,9 +26,16 @@ const Login = () => {
     }
   }
 
+  const handleClose = () => {
+    navigate('/')
+  }
+
   return (
     <div className='centered-container'>
       <div className="login-container">
+
+        <button className='close-button' onClick={handleClose}>x</button>
+
         <h2>Kirjaudu sisään</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
