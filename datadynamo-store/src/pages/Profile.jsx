@@ -8,6 +8,7 @@ const Profile = () => {
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [currentPassword, setCurrenPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleClose = () => {
     navigate('/store')
@@ -33,6 +34,10 @@ const Profile = () => {
     } else {
       alert(success)
     }
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -63,7 +68,7 @@ const Profile = () => {
           <form onSubmit={handlePasswordChange}>
             <div className="form-group">
               <input 
-                type="password" 
+                type={showPassword ? "text" : "password"}
                 id="currentPassword" 
                 placeholder="Vanha salasana" 
                 value={currentPassword}
@@ -73,12 +78,16 @@ const Profile = () => {
             </div>
             <div className="form-group">
               <input 
-                type="password" 
+                type={showPassword ? "text" : "password"} 
                 id="newPassword" 
                 placeholder="Uusi salasana" 
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                required />
+                required 
+              />
+              <button type="button" className="password-toggle" onClick={togglePasswordVisibility}>
+                {showPassword ? "Piilota" : "Näytä"}
+              </button>
             </div>
             <button type="submit">OK</button> 
           </form>

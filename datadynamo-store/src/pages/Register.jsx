@@ -8,6 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [confirmEmail, setConfirmEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -27,6 +28,10 @@ const Register = () => {
 
   const handleClose = () => {
     navigate('/')
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -59,13 +64,16 @@ const Register = () => {
           </div>
           <div className="form-group">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Salasana"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <button type="button" className="password-toggle" onClick={togglePasswordVisibility}>
+              {showPassword ? "Piilota" : "Näytä"}
+            </button>
           </div>
           <button type="submit">Rekisteröidy</button>
           
