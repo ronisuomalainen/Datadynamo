@@ -26,8 +26,8 @@ const Profile = () => {
 
   const handlePasswordChange = async (e) => {
     e.preventDefault()
-
-    const { success, error } = await updateUserPassword(newPassword)
+  
+    const { success, error } = await updateUserPassword(newPassword, currentPassword)
     if (error) {
       alert('Salasanan vaihto epäonnistui: ' + error)
     } else {
