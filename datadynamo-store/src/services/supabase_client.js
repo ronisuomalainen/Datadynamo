@@ -5,60 +5,75 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
 export async function addUserToDb(email, password) {
-  if (!email) {
-    alert('Sähköposti tarvitaan')
-    return
-  }
-
-  if (!password) {
-    alert("Salasana tarvitaan")
-    return
-  }
-
   try {
     const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password
-    })
-
-    if (error) {
-      console.error("Supabase error:", error)
-      alert("Tapahtui virhe: " + error.message)
-      return null
-    }
-
-    console.log("User data:", data)
-    return data.user
-  } catch (error) {
-    console.error("Unexpected error:", error)
-    alert("Odottamaton virhe: " + error.message)
-    return null
-  }
-}
-
-export async function loginUser(email, password) {
-  if (!email || !password) {
-    alert("Sähköposti ja salasana vaaditaan")
-    return null
-  }
-
-  try {
-    const { data: session, error } = await supabase.auth.signInWithPassword({
-      email, 
+      email,
       password
     })
 
     if (error) {
-      alert("Tapahtui virhe: " + error.message)
-      console.error("Login error: ", error)
-      return null
+      console.error("Supabase error:", error)
+      return { error: error.message }
     }
 
-    console.log("Logged in user: ", session.user.email)
+    console.log("User registered:", data)
+    return { user: data.user }
+  } catch (error) {
+    console.error("Unexpected error:", error)
+    return { error: error.message }
+  }
+}
+
+export async function loginUser(email, password) {
+  try {
+    const { data: session, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+
+    if (error) {
+      console.error("Login error:", error)
+      return { error: error.message }
+    }
+
+    console.log("User logged in successfully:", session.user)
     return session.user
-  } catch (err) {
-    console.error("Unexpected error: ", err)
-    alert("Odottamaton virhe")
-    return null
+  } catch (error) {
+    console.error("Unexpected login error:", error)
+    return { error: error.message }
+  }
+}
+
+export async function updateUserEmail(newEmail) {
+  try {
+    const { error } = await supabase.auth.updateUser({ email: newEmail })
+
+    if (error) {
+      console.error('Email update error: ', error)
+      return { error: error.message }
+    }
+
+    console.log('Email updated successfully')
+    return { success: 'Sähköposti vaihdettu' }
+  } catch (error) {
+    console.error('Unexpected error: ', error)
+    return { error: error.message }
+  }
+}
+
+export async function updateUserPassword(newPassword) {
+  try {
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
+
+    if (error) {
+      console.error('Password update error: ', error)
+      return { error: error.message }
+    }
+
+    console.log('Password updated successfully')
+    return { success: 'Salasana vaihdettu' }
+  } catch (error) {
+    console.error('Unexpected error: ', error)
+    return { error: error.message }
   }
 }

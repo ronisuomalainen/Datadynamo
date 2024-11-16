@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { loginUser } from '../services/supabase_client'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { updateUserEmail, updateUserPassword } from '../services/supabase_client'
 import '../index.css'
 
 const Profile = () => {
@@ -16,32 +16,22 @@ const Profile = () => {
   const handleEmailChange = async (e) => {
     e.preventDefault()
 
-    try {
-      const { error } = await supabase.auth.updateUser({ email: newEmail })
-      if (error) {
-        alert('Sähköpostin vaihto epäonnistui: ' + error.message)
-      } else {
-        alert('Sähköposti vaihdettu!')
-      }
-    } catch (error) {
-      console.error('Odottamaton virhe: ', error)
-      alert('Odottamaton virhe tapahtui')
+    const { success, error } = await updateUserEmail(newEmail)
+    if (error) {
+      alert('Sähköpostin vaihto epäonnistui: ' + error)
+    } else {
+      alert(success)
     }
   }
 
   const handlePasswordChange = async (e) => {
     e.preventDefault()
 
-    try {
-      const { error } = await supabase.auth.updateUser({ password: newPassword })
-      if (error) {
-        alert('Salasanan vaihto epäonnistui: ' + error.message)
-      } else {
-        alert('Salasana vaihdettu')
-      }
-    } catch (error) {
-      console.error('Odottamaton virhe: ', error)
-      alert('Odottamaton virhe tapahtui')
+    const { success, error } = await updateUserPassword(newPassword)
+    if (error) {
+      alert('Salasanan vaihto epäonnistui: ' + error)
+    } else {
+      alert(success)
     }
   }
 
@@ -58,7 +48,7 @@ const Profile = () => {
               <input 
                 type="email" 
                 id="newEmail" 
-                placeholder="Uusi Sähköposti"
+                placeholder="Uusi sähköposti"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
                 required 

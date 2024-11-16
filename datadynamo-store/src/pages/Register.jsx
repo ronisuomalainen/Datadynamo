@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import '../index.css'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { addUserToDb } from '../services/supabase_client'
+import '../index.css'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -17,11 +17,11 @@ const Register = () => {
       return
     }
 
-    const user = await addUserToDb(email, password)
-    if (user) {
-      navigate('/store')
+    const { error } = await addUserToDb(email, password)
+    if (error) {
+      alert('Rekisteröinti epäonnistui: ' + error)
     } else {
-      alert('Rekisteröinti epäonnistui')
+      navigate('/store')
     }
   }
 

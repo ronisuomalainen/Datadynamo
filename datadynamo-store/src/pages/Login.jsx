@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../services/supabase_client'
 import '../index.css'
@@ -11,18 +11,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!email || !password) {
-      alert('Sähköposti ja salasana tarvitaan')
-      return
-    }
+    const { error } = await loginUser(email, password)
 
-    const user = await loginUser(email, password)
-    console.log('Login result: ', user)
-
-    if (user) {
-      navigate('/store')
+    if (error) {
+      alert('Kirjautuminen epäonnistui: ' + error)
     } else {
-      alert('Kirjautuminen epäonnistui')
+      navigate('/store')
     }
   }
 
