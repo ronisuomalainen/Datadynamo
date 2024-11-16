@@ -31,7 +31,7 @@ const Register = () => {
 
   return (
     <div className='centered-container'>
-      <div className="register-container">
+      <div className="form-container">
         
         <button className='close-button' onClick={handleClose}>x</button>
 

@@ -32,7 +32,7 @@ const Login = () => {
 
   return (
     <div className='centered-container'>
-      <div className="login-container">
+      <div className="form-container">
 
         <button className='close-button' onClick={handleClose}>x</button>
 
