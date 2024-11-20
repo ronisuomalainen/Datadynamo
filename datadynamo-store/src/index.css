@@ -281,7 +281,7 @@ button[type="submit"]:hover {
   background-color: #6666ff;
 }
 
-.content {
+.store-content {
   display: flex;
   justify-content: center;
   align-items: center;
