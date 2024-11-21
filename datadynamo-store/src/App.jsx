@@ -7,10 +7,12 @@ import Register from './pages/Register.jsx'
 import Store from './pages/Store.jsx'
 import Profile from './pages/Profile.jsx'
 import Welcome from './pages/Welcome.jsx'
+import Order from './pages/Order.jsx'
 
 import Navbar from './components/NavBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import GuestRoute from './components/GuestRoute.jsx'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -95,6 +97,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order"
+            element={
+              <ProtectedRoute user={user}>
+                <Order />
               </ProtectedRoute>
             }
           />

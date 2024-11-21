@@ -305,12 +305,21 @@ button[type="submit"]:hover {
   border-radius: 20px;
 }
 
-
 .details-section p {
   margin: 20px 0;
   text-align: center;
-  
-  
+}
+
+.add_Picture {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color:black;
+  background-color:lightseagreen;
+  border:#11111B;
+  border-radius: 10px;
+  text-decoration: none;
 }
 
 .purchase_Btn {
@@ -323,4 +332,29 @@ button[type="submit"]:hover {
   border:#11111B;
   border-radius: 10px;
   text-decoration: none;
+}
+
+
+form input, form select, form button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+form input, form select {
+  color: black;
+  background-color:white;
+  
+}
+
+form button {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #555;
 }
