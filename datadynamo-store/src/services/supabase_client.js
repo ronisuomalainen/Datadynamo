@@ -99,3 +99,28 @@ export async function updateUserPassword(newPassword, currentPassword) {
     return { error: error.message }
   }
 }
+
+export async function deleteUser() {
+  try {
+    // Haetaan käyttäjätiedot
+    const { data: { user }, error: userError } = await supabase.auth.getUser()
+
+    if (userError || !user) {
+      return { error: 'Käyttäjää ei tunnistettu' }
+    }
+
+    // Poistetaan käyttäjätili
+    const { error } = await supabase.auth.api.deleteUser(user.id)
+
+    if (error) {
+      console.error('Käyttäjän poisto epäonnistui:', error)
+      return { error: error.message }
+    }
+
+    console.log('Käyttäjätili poistettu onnistuneesti')
+    return { success: 'Käyttäjätili on poistettu.' }
+  } catch (error) {
+    console.error('Odottamaton virhe:', error)
+    return { error: error.message }
+  }
+}

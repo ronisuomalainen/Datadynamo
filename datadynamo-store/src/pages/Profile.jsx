@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { updateUserEmail, updateUserPassword } from '../services/supabase_client'
+import { updateUserEmail, updateUserPassword, deleteUser} from '../services/supabase_client'
 import '../index.css'
 
 const Profile = () => {
@@ -9,6 +9,16 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState('')
   const [currentPassword, setCurrenPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const hideModal = () => {
+    setIsModalVisible(false);
+  };
+
 
   const handleClose = () => {
     navigate('/store')
@@ -33,6 +43,16 @@ const Profile = () => {
       alert('Salasanan vaihto epäonnistui: ' + error)
     } else {
       alert(success)
+    }
+  }
+
+  const handleDeleteUser = async () => {
+    const { success, error } = await deleteUser()
+    if (error) {
+      alert('Käyttäjän poisto epäonnistui: ' + error)
+    } else {
+      alert(success)
+      navigate('/login')
     }
   }
 
@@ -92,6 +112,22 @@ const Profile = () => {
             <button type="submit">OK</button> 
           </form>
         </div>
+
+        <div className='profile-form form-container'>
+          <h2>Poista käyttäjätili</h2>
+          <button type="submit" onClick={showModal}>Poista</button> 
+          {isModalVisible && (
+            <div className="modal show">
+              <div className="modal-overlay" onClick={hideModal}></div>
+              <div className="modal-content">
+                <h2>Oletko varma, että haluat poistaa tilisi?</h2>
+                <button onClick={hideModal}>Peruuta</button>
+                <button onClick={handleDeleteUser}>Poista tilini</button>
+              </div>
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   )
