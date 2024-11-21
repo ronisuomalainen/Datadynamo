@@ -10,7 +10,7 @@ const Store = () => {
     <div className="details-section">
       <p>Lorem ipsum hyvä hiirimatto omalla kuvalla</p>
       <p>1,50€</p>
-      <button>Osta</button>
+      <button className='purchase_Btn'>Osta</button>
     </div>
   </div>
   )

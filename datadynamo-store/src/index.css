@@ -281,29 +281,46 @@ button[type="submit"]:hover {
   background-color: #6666ff;
 }
 
+/*store page */
 .store-content {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 50px;
+  justify-content: space-between;
+  align-items:center;
+  padding-left: 50px;
+  padding-right: 350px;
 }
 
 .image-section, .details-section {
   background-color: #222;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .image-section img {
   width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
+  max-width: 600px;
+  border-radius: 20px;
 }
 
 
 .details-section p {
-  margin: 10px 0;
+  margin: 20px 0;
   text-align: center;
+  
+  
+}
+
+.purchase_Btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color:black;
+  background-color:lightseagreen;
+  border:#11111B;
+  border-radius: 10px;
+  text-decoration: none;
 }
