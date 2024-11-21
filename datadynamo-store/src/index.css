@@ -334,7 +334,7 @@ button[type="submit"]:hover {
   text-decoration: none;
 }
 
-
+/* order page */ 
 form input, form select, form button {
   width: 100%;
   margin-bottom: 15px;
@@ -462,4 +462,11 @@ form button:hover {
 
 .close-button:hover {
   color: #e74c3c; /* Poista-painikkeen väri muuttuu hoverissa */
+}
+
+/*endpage*/
+.endpage-container {
+  position: absolute;
+  padding-top: 250px;
+  padding-left: 650px;
 }

@@ -3,9 +3,13 @@ import { Navigate, useNavigate } from 'react-router-dom'
 
 
 const Order = () => {
+    const navigate = useNavigate()
+    const handleOrder = () => {
+        navigate('/endpage') 
+  }
 return (
     <div class="form-container">
-        <form>
+        <form onSubmit={handleOrder}>
             <label for="name">Nimi</label>
             <input type="text" id="name" placeholder="Nimi"/>
 
