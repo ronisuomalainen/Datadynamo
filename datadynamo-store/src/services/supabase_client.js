@@ -102,14 +102,12 @@ export async function updateUserPassword(newPassword, currentPassword) {
 
 export async function deleteUser() {
   try {
-    // Haetaan käyttäjätiedot
     const { data: { user }, error: userError } = await supabase.auth.getUser()
 
     if (userError || !user) {
       return { error: 'Käyttäjää ei tunnistettu' }
     }
 
-    // Poistetaan käyttäjätili
     const { error } = await supabase.auth.api.deleteUser(user.id)
 
     if (error) {
