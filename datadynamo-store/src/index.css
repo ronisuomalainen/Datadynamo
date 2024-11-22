@@ -184,7 +184,7 @@ button[type="submit"]:hover {
 
 /* Profile */
 .profile-container {
-  max-width: 1100px;
+  max-width: 750px;
   width: 100%;
   padding: 40px;
   background-color: #1A253A;
@@ -343,11 +343,11 @@ form input, form select, form button {
   border-radius: 5px;
 }
 
-form input, form select {
+/*form input, form select {
   color: black;
   background-color:white;
   
-}
+}*/
 
 form button {
   background-color: #333;

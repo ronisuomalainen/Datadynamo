@@ -113,6 +113,7 @@ const Profile = () => {
           </form>
         </div>
 
+        {/* 
         <div className='profile-form form-container'>
           <h2>Poista käyttäjätili</h2>
           <button type="submit" onClick={showModal}>Poista</button> 
@@ -127,6 +128,8 @@ const Profile = () => {
             </div>
           )}
         </div>
+        */}
+        
 
       </div>
     </div>
