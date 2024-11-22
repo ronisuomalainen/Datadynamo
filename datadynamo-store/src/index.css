@@ -184,7 +184,7 @@ button[type="submit"]:hover {
 
 /* Profile */
 .profile-container {
-  max-width: 800px;
+  max-width: 1100px;
   width: 100%;
   padding: 40px;
   background-color: #1A253A;
@@ -217,8 +217,8 @@ button[type="submit"]:hover {
 /* Password toggle */
 .password-toggle {
   position: absolute;
-  top: 50%; /* Vertically center the toggle button */
-  right: 10px; /* Align it to the right edge */
+  top: 32%;
+  right: -130px;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -281,7 +281,7 @@ button[type="submit"]:hover {
   background-color: #6666ff;
 }
 
-/*store page */
+/* Store page */
 .store-content {
   display: flex;
   justify-content: center;
