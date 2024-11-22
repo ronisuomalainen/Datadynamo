@@ -1,11 +1,31 @@
 /* Global */
+:root {
+  --background-color: #11111B;
+  --navbar-background: #1A253A;
+  --text-color: lightgray;
+  --input-background: #333344;
+  --button-background: #4444cc;
+  --button-hover-background: #6666ff;
+  --modal-background: #1A253A;
+}
+
+[data-theme='light'] {
+  --background-color: #ffffff;
+  --navbar-background: #e1e1e1;
+  --text-color: #000000;
+  --input-background: #f0f0f0;
+  --button-background: #b4b4b4;
+  --button-hover-background: #7a7a7a;
+  --modal-background: #ffffff;
+}
+
 * {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: lightgray;
+  color: var(--text-color);
 }
 
 body, html {
-  background-color: #11111B;
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
 }
@@ -27,7 +47,7 @@ body, html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1A253A;
+  background-color: var(--navbar-background);
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -56,7 +76,7 @@ body, html {
 }
 
 .nav-link:hover {
-  background-color: #11111B;
+  background-color: var(--background-color);
   border-radius: 4px;
 }
 
@@ -70,7 +90,7 @@ body, html {
 }
 
 .logout-button:hover {
-  background-color: #11111B;
+  background-color: var(--background-color);
   border-radius: 4px;
 }
 
@@ -79,7 +99,7 @@ body, html {
   max-width: 400px;
   width: 100%;
   padding: 40px;
-  background-color: #1A253A;
+  background-color: var(--navbar-background);
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
@@ -90,15 +110,11 @@ body, html {
 .form-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .form-group {
   position: relative;
-  margin-bottom: 20px;
-}
-
-.form-container .form-group {
   margin-bottom: 20px;
 }
 
@@ -107,8 +123,8 @@ input {
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #333344;
-  color: #ffffff;
+  background-color: var(--input-background);
+  color: var(--text-color);
   box-sizing: border-box;
 }
 
@@ -116,7 +132,7 @@ input {
 .form-container button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #4444cc;
+  background-color: var(--button-background);
   border: none;
   border-radius: 4px;
   color: white;
@@ -126,13 +142,13 @@ input {
 }
 
 .form-container button[type="submit"]:hover {
-  background-color: #6666ff;
+  background-color: var(--button-hover-background);
 }
 
 button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #4444cc;
+  background-color: var(--button-background);
   border: none;
   border-radius: 4px;
   color: white;
@@ -143,7 +159,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #6666ff;
+  background-color: var(--button-hover-background);
 }
 
 /* Close Button */
@@ -168,7 +184,7 @@ button[type="submit"]:hover {
   max-width: 400px;
   width: 100%;
   padding: 40px;
-  background-color: #1A253A;
+  background-color: var(--navbar-background);
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
@@ -178,16 +194,15 @@ button[type="submit"]:hover {
 .login-container h2, .register-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--text-color);
 }
-
 
 /* Profile */
 .profile-container {
   max-width: 750px;
   width: 100%;
   padding: 40px;
-  background-color: #1A253A;
+  background-color: var(--navbar-background);
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
@@ -198,7 +213,7 @@ button[type="submit"]:hover {
 
 .profile-form {
   flex: 1;
-  background-color: #11111B;
+  background-color: var(--background-color);
   padding: 20px;
   padding-bottom: 40px;
   border-radius: 8px;
@@ -207,7 +222,7 @@ button[type="submit"]:hover {
 
 .profile-form h2 {
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .profile-form .form-group {
@@ -249,13 +264,13 @@ button[type="submit"]:hover {
 
 .welcome-container h1 {
   font-size: 2.5rem;
-  color: #ffffff;
+  color: var(--text-color);
   margin-bottom: 0.5rem;
 }
 
 .welcome-container p {
   font-size: 1.2rem;
-  color: #bbbbbb;
+  color: var(--text-color);
   margin-bottom: 1.5rem;
 }
 
@@ -269,8 +284,8 @@ button[type="submit"]:hover {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
-  background-color: #4444cc;
+  color: white;
+  background-color: var(--button-background);
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -278,63 +293,60 @@ button[type="submit"]:hover {
 }
 
 .button:hover {
-  background-color: #6666ff;
+  background-color: var(--button-hover-background);
 }
 
-/* Store page */
+/* Store Page */
 .store-content {
   display: flex;
-  justify-content: center;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   padding-left: 50px;
   padding-right: 350px;
 }
 
+/* Image and Details Section */
 .image-section, .details-section {
-  background-color: #222;
+  background-color: var(--navbar-background);
   border-radius: 5px;
   padding: 10px;
   margin: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Image Section */
 .image-section img {
   width: 100%;
   max-width: 600px;
   border-radius: 20px;
 }
 
+/* Details Section */
 .details-section p {
   margin: 20px 0;
   text-align: center;
+  color: var(--text-color);
 }
 
-.add_Picture {
+/* Buttons */
+.add_Picture, .purchase_Btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color:black;
-  background-color:lightseagreen;
-  border:#11111B;
+  color: var(--text-color);
+  background-color: var(--button-background);
+  border: none;
   border-radius: 10px;
   text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-.purchase_Btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color:black;
-  background-color:lightseagreen;
-  border:#11111B;
-  border-radius: 10px;
-  text-decoration: none;
+.add_Picture:hover, .purchase_Btn:hover {
+  background-color: var(--button-hover-background);
 }
 
-/* order page */ 
+/* Order Page */
 form input, form select, form button {
   width: 100%;
   margin-bottom: 15px;
@@ -343,43 +355,15 @@ form input, form select, form button {
   border-radius: 5px;
 }
 
-/*form input, form select {
-  color: black;
-  background-color:white;
-  
-}*/
-
 form button {
-  background-color: #333;
-  color: white;
+  background-color: var(--input-background);
+  color: var(--text-color);
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 form button:hover {
-  background-color: #555;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.modal-content button {
-  margin: 10px;
+  background-color: var(--button-hover-background);
 }
 
 /* Modal */
@@ -408,27 +392,27 @@ form button:hover {
 }
 
 .modal-content {
-  background-color: #1A253A; /* Pimeä tausta modaaliin, joka sopii muun käyttöliittymän kanssa */
+  background-color: var(--modal-background);
   padding: 30px;
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Lisää varjoa sisällölle */
   text-align: center;
-  color: white; /* Teksti vaaleaksi */
+  color: var(--text-color);
 }
 
 .modal-content h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
-  color: #ffffff; /* Varmistaa, että otsikko näkyy hyvin */
+  color: var(--text-color);
 }
 
 .modal-content button {
   padding: 10px 20px;
   border-radius: 4px;
   border: none;
-  background-color: #4444cc; /* Pääpainikkeet vastaavat muun sovelluksen värejä */
+  background-color: var(--button-background);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -437,7 +421,7 @@ form button:hover {
 }
 
 .modal-content button:hover {
-  background-color: #6666ff; /* Vaaleampi sävy hover-tilassa */
+  background-color: var(--button-hover-background);
 }
 
 .modal-content button:last-child {
@@ -448,7 +432,7 @@ form button:hover {
   background-color: #ff4d4d; /* Vaaleampi punainen hover-tilassa */
 }
 
-/* Close button for modal (optionally you can add one inside modal-content) */
+/* Close Button for Modal */
 .close-button {
   position: absolute;
   top: 10px;
@@ -456,7 +440,7 @@ form button:hover {
   background: transparent;
   border: none;
   font-size: 24px;
-  color: #ffffff;
+  color: var(--text-color);
   cursor: pointer;
 }
 
@@ -464,9 +448,30 @@ form button:hover {
   color: #e74c3c; /* Poista-painikkeen väri muuttuu hoverissa */
 }
 
-/*endpage*/
+/* Endpage */
 .endpage-container {
   position: absolute;
   padding-top: 250px;
   padding-left: 650px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  background-color: var(--button-background);
+  border: none;
+  border-radius: 10px;
+}
+
+.theme-toggle:hover {
+  background-color: var(--button-hover-background);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.theme-icon {
+  width: 22px; /* Aseta haluamasi leveys */
+  height: 22px; /* Aseta haluamasi korkeus */
+  align-items: center;
+  padding-top: 2px;
 }
