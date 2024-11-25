@@ -7,6 +7,7 @@
   --button-background: #4444cc;
   --button-hover-background: #6666ff;
   --modal-background: #1A253A;
+  --button-text-color: white;
 }
 
 [data-theme='light'] {
@@ -17,6 +18,7 @@
   --button-background: #b4b4b4;
   --button-hover-background: #7a7a7a;
   --modal-background: #ffffff;
+  --button-text-color: #000000;
 }
 
 * {
@@ -128,14 +130,31 @@ input {
   box-sizing: border-box;
 }
 
+input::placeholder select::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  box-sizing: border-box;
+  cursor: pointer;
+  appearance: none;
+}
+
 /* Shared Button Styling */
 .form-container button[type="submit"] {
   width: 100%;
   padding: 10px;
+  color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
   border-radius: 4px;
-  color: white;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -148,6 +167,7 @@ input {
 button[type="submit"] {
   width: 100%;
   padding: 10px;
+  color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
   border-radius: 4px;
@@ -285,7 +305,7 @@ button[type="submit"]:hover {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: white;
+  color: var(buttonte);
   background-color: var(--button-background);
   border: none;
   border-radius: 5px;
@@ -335,7 +355,7 @@ button[type="submit"]:hover {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
   border-radius: 10px;
@@ -354,11 +374,12 @@ form input, form select, form button {
   padding: 10px;
   border: none;
   border-radius: 5px;
+  color: var(--button-text-color);
 }
 
 form button {
   background-color: var(--input-background);
-  color: var(--text-color);
+  color: var(--button-text-color);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -413,6 +434,7 @@ form button:hover {
   padding: 10px 20px;
   border-radius: 4px;
   border: none;
+  color: var(--button-text-color);
   background-color: var(--button-background);
   color: white;
   font-size: 16px;
@@ -458,6 +480,7 @@ form button:hover {
 
 /* Theme Toggle */
 .theme-toggle {
+  color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
   border-radius: 10px;

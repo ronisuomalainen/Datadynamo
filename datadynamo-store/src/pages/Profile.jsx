@@ -9,15 +9,15 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState('')
   const [currentPassword, setCurrenPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
   const showModal = () => {
-    setIsModalVisible(true);
-  };
+    setIsModalVisible(true)
+  }
 
   const hideModal = () => {
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
 
   const handleClose = () => {
@@ -46,6 +46,7 @@ const Profile = () => {
     }
   }
 
+  /*
   const handleDeleteUser = async () => {
     const { success, error } = await deleteUser()
     if (error) {
@@ -55,6 +56,7 @@ const Profile = () => {
       navigate('/login')
     }
   }
+  */
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)

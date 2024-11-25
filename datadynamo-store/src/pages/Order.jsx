@@ -1,5 +1,5 @@
 import '../index.css'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Order = () => {
@@ -8,25 +8,26 @@ const Order = () => {
         navigate('/endpage') 
   }
 return (
-    <div class="form-container">
+    <div className="form-container">
         <form onSubmit={handleOrder}>
-            <label for="name">Nimi</label>
-            <input type="text" id="name" placeholder="Nimi"/>
+            <label htmlFor="name">Nimi</label>
+            <input type="text" id="name" required/>
 
-            <label for="email">Sähköposti</label>
-            <input type="email" id="email" placeholder="Sähköposti"/>
+            <label htmlFor="email">Sähköposti</label>
+            <input type="email" id="email" required/>
 
-            <label for="address">Katuosoite</label>
-            <input type="text" id="address" placeholder="Katuosoite"/>
+            <label htmlFor="address">Katuosoite</label>
+            <input type="text" id="address" required/>
 
-            <label for="city">Kaupunki</label>
-            <input type="text" id="city" placeholder="Kaupunki"/>
+            <label htmlFor="city">Kaupunki</label>
+            <input type="text" id="city" required/>
 
-            <label for="payment">Valitse maksutapa</label>
-            <select id="payment">
-                <option>Visa</option>
-                <option>MasterCard</option>
-                <option>PayPal</option>
+            <label htmlFor="payment">Valitse maksutapa</label>
+            <select id="payment" required>
+                <option defaultValue="">Valitse maksutapa</option>
+                <option value="visa">Visa</option>
+                <option value="mastercard">MasterCard</option>
+                <option value="paypal">PayPal</option>
             </select>
 
         <button type="submit">Maksa</button>
