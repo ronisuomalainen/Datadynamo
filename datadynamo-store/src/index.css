@@ -320,18 +320,20 @@ button[type="submit"]:hover {
 /* Store Page */
 .store-content {
   display: flex;
-  justify-content: space-between;
+  max-width: 1400px;
+  justify-content: center;
   align-items: center;
-  padding-left: 50px;
-  padding-right: 350px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10%;
 }
 
 /* Image and Details Section */
 .image-section, .details-section {
   background-color: var(--navbar-background);
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 5%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
