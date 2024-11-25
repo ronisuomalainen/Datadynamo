@@ -233,7 +233,7 @@ button[type="submit"]:hover {
 .password-toggle {
   position: absolute;
   top: 32%;
-  right: -130px;
+  right: 10px;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -244,6 +244,7 @@ button[type="submit"]:hover {
   padding: 5px 10px;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  width: 50px;
 }
 
 .password-toggle:hover {
