@@ -7,9 +7,7 @@ const Store = () => {
       navigate('/order') 
   }
   
-
   return (
-    
   <div className="store-content">
     <div className="image-section">
       <img src="matto.webp" alt="Tuotekuva"/>
@@ -17,14 +15,12 @@ const Store = () => {
     </div>
     <form onSubmit={handlePurchase}>
     <div className="details-section">
-      <p>Lorem ipsum hyvä hiirimatto omalla kuvalla</p>
-      <p>40€</p>
+      <p>Hiirimatto omalla designillä</p>
+      <p>20cm x 35cm - 40€</p>
       <button className='purchase_Btn'>Osta</button>
     </div>
     </form>
   </div>
-  
   )
-
 }
 export default Store
