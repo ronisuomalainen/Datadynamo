@@ -20,7 +20,7 @@ const Store = () => {
   return (
     <div className="store-content">
       <div className="image-section">
-        <img src="matto.webp" alt="Tuotekuva" />
+        <img src="matto.png" alt="Tuotekuva" />
     
         {uploadedImage && (
           <img
@@ -38,8 +38,8 @@ const Store = () => {
         <input
           id='scale-slider' 
           type="range"
-          min='0.5'
-          max='2'
+          min='0.1'
+          max='1'
           step='0.05'
           value={designScale}
           onChange={handleScaleChange}
