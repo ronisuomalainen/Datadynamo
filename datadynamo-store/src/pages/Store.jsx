@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import '../index.css'
+import FilePicker from '../components/FilePicker'
 
 const Store = () => {
   const navigate = useNavigate()
@@ -11,7 +12,7 @@ const Store = () => {
   <div className="store-content">
     <div className="image-section">
       <img src="matto.webp" alt="Tuotekuva"/>
-      <button className='add_Picture'>Lisää kuva</button>
+      <FilePicker />
     </div>
     <form onSubmit={handlePurchase}>
     <div className="details-section">
