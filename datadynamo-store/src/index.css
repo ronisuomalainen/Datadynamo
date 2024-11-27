@@ -354,8 +354,8 @@ button[type="submit"]:hover {
 }
 
 .design {
-  position: fixed;
-  top: 10%;
+  position: absolute;
+  top: 2%;
   left: 10;
   transform: translate(-50%, -50%);
   pointer-events: none;

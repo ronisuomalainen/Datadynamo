@@ -16,6 +16,29 @@ const Store = () => {
   const handleScaleChange = (event) => {
     setDesignScale(event.target.value)
   }
+
+  /*const handleImagePosition = document.getElementById("input"); {
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    handleImagePosition.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      offsetX = event.clientX - car.getBoundingClientRect().left;
+      offsetY = event.clientY - car.getBoundingClientRect().top;
+      car.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      if (isDragging) {
+        const x = event.clientX - offsetX;
+        const y = event.clientY - offsetY;
+        car.style.left = `${x}px`;
+        car.style.top = `${y}px`;
+      }
+    });
+  }*/
   
   return (
     <div className="store-content">
@@ -32,7 +55,6 @@ const Store = () => {
             }}
           />
         )}
-      
         <FilePicker onFileSelect={setUploadedImage}/>
         <label htmlFor="scale-slider">Säädä kuvan kokoa</label>
         <input
