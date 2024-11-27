@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
-const FilePicker = () => {
+const FilePicker = ({ onFileSelect }) => {
   const [file, setFile] = useState(null)
+  const fileInputRef = useRef(null)
 
   const readFile = (type) => {
     if (file) {
       const reader = new FileReader()
 
       reader.onload = (event) => {
+        onFileSelect(event.target.result)
         console.log('File loaded succesfully!')
       }
 
@@ -21,6 +23,14 @@ const FilePicker = () => {
     }
   }
 
+  const clearFile = () => {
+    setFile(null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+    onFileSelect(null)
+  }
+
   return (
     <div className='filepicker-container'>
       <div className="filepicker-input-section">
@@ -28,19 +38,16 @@ const FilePicker = () => {
           id="file-upload"
           type="file"
           accept="image/*"
+          ref={fileInputRef}
           onChange={(e) => setFile(e.target.files[0])}
         />
-
-        <p className='filepicker-file-name'>
-          {file ? file.name : "Tiedostoa ei valittu"}
-        </p>
       </div>
 
-      <div className='mt-4 flex flex-wrap gap-3'>
+      <div className='filepicker-button-container'>
         <button className='filepicker-button' onClick={() => readFile(file)}>
           Lisää kuva
         </button>
-        <button className='filepicker-button' onClick={() => setFile(null)}>
+        <button className='filepicker-button' onClick={clearFile}>
           Tyhjennä
         </button>
       </div>
