@@ -8,6 +8,7 @@
   --button-hover-background: #6666ff;
   --modal-background: #1A253A;
   --button-text-color: white;
+  --button-border-radius: 6px;
 }
 
 [data-theme='light'] {
@@ -79,7 +80,7 @@ body, html {
 
 .nav-link:hover {
   background-color: var(--background-color);
-  border-radius: 4px;
+  border-radius: var(--button-border-radius);
 }
 
 .logout-button {
@@ -93,7 +94,7 @@ body, html {
 
 .logout-button:hover {
   background-color: var(--background-color);
-  border-radius: 4px;
+  border-radius: var(--button-border-radius);
 }
 
 /* Shared Form Container */
@@ -154,7 +155,7 @@ select {
   color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--button-border-radius);
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -170,7 +171,7 @@ button[type="submit"] {
   color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--button-border-radius);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -253,7 +254,7 @@ button[type="submit"]:hover {
 .password-toggle {
   position: absolute;
   top: 32%;
-  right: 10px;
+  right: 6px;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -261,8 +262,6 @@ button[type="submit"]:hover {
   font-size: 14px;
   cursor: pointer;
   text-align: center;
-  padding: 5px 10px;
-  border-radius: 4px;
   transition: background-color 0.3s ease;
   width: 50px;
 }
@@ -308,7 +307,7 @@ button[type="submit"]:hover {
   color: var(buttonte);
   background-color: var(--button-background);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--button-border-radius);
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
@@ -393,7 +392,7 @@ button[type="submit"]:hover {
   color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--button-border-radius);
   text-decoration: none;
   transition: background-color 0.3s ease;
   margin-top: 20px;
@@ -409,7 +408,7 @@ form input, form select, form button {
   margin-bottom: 15px;
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--button-border-radius);
   color: var(--button-text-color);
 }
 
@@ -468,7 +467,7 @@ form button:hover {
 
 .modal-content button {
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: var(--button-border-radius);
   border: none;
   color: var(--button-text-color);
   background-color: var(--button-background);
@@ -519,13 +518,11 @@ form button:hover {
   color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--button-border-radius);
 }
 
 .theme-toggle:hover {
   background-color: var(--button-hover-background);
-  border: none;
-  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -580,7 +577,7 @@ form button:hover {
   background-color: var(--button-background);
   color: var(--button-text-color);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--button-border-radius);
   cursor: pointer;
   transition: background-color 0.3s;
 }
