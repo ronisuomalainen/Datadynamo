@@ -5,68 +5,99 @@ import { useState } from 'react'
 
 const Store = () => {
   const navigate = useNavigate()
+
   const [uploadedImage, setUploadedImage] = useState(null)
   const [designScale, setDesignScale] = useState(1)
+  const [designPosition, setDesignPosition] = useState({ x:0, y:0 })
+  const [designRotation, setDesignRotation] = useState(0)
+  const [designIsMoving, setDesignIsMoving] = useState(false)
+
+  const [startX, setStartX] = useState(0)
+  const [startY, setStartY] = useState(0)
 
   const handlePurchase = (e) => {
     e.preventDefault()
     navigate('/order') 
   }
 
-  const handleScaleChange = (event) => {
-    setDesignScale(event.target.value)
+  const handleScaleChange = (e) => {
+    setDesignScale(e.target.value)
   }
 
-  /*const handleImagePosition = document.getElementById("input"); {
+  const handleRotationChange = (e) => {
+    setDesignRotation(e.target.value)
+  }
 
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
+  const handleMouseDown = (e) => {
+    setDesignIsMoving(true)
+    setStartX(e.clientX - designPosition.x)
+    setStartY(e.clientY - designPosition.y)
 
-    handleImagePosition.addEventListener("mousedown", (event) => {
-      isDragging = true;
-      offsetX = event.clientX - car.getBoundingClientRect().left;
-      offsetY = event.clientY - car.getBoundingClientRect().top;
-      car.style.cursor = "grabbing";
-    });
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseup', handleMouseUp)
+  }
 
-    document.addEventListener("mousemove", (event) => {
-      if (isDragging) {
-        const x = event.clientX - offsetX;
-        const y = event.clientY - offsetY;
-        car.style.left = `${x}px`;
-        car.style.top = `${y}px`;
-      }
-    });
-  }*/
+  const handleMouseMove = (moveEvent) => {
+    if (designIsMoving) {
+      const deltaX = moveEvent.clientX - startX
+      const deltaY = moveEvent.clientY - startY
+
+      setDesignPosition({ x: deltaX, y: deltaY })
+    }
+  }
+
+  const handleMouseUp = () => {
+    setDesignIsMoving(false)
+    document.removeEventListener('mousemove', handleMouseMove)
+    document.removeEventListener('mouseup', handleMouseUp)
+  }
   
   return (
     <div className="store-content">
       <div className="image-section">
-        <img src="matto.png" alt="Tuotekuva" />
-    
-        {uploadedImage && (
-          <img
-            src={uploadedImage}
-            alt='Oma design'
-            className='design'
-            style={{
-              transform: `scale(${designScale})`
-            }}
-          />
-        )}
+        <div className='mouse-mat' >
+          {uploadedImage && (
+            <img
+              src={uploadedImage}
+              alt='Oma design'
+              className='design'
+              style={{
+                transform: `
+                    translate(${designPosition.x}px, ${designPosition.y}px)
+                    scale(${designScale})
+                    rotate(${designRotation}deg)
+                  `,
+                cursor: designIsMoving ? 'grabbing' : 'grab'
+              }}
+              onMouseDown={handleMouseDown}
+            />
+          )}
+        </div>
         <FilePicker onFileSelect={setUploadedImage}/>
         <label htmlFor="scale-slider">Säädä kuvan kokoa</label>
         <input
           id='scale-slider' 
           type="range"
           min='0.1'
-          max='1'
-          step='0.05'
+          max='2'
+          step='0.01'
           value={designScale}
           onChange={handleScaleChange}
+          className='slider'
+        />
+        <label htmlFor="rotation-slider">Käännä kuvaa</label>
+        <input
+          id='rotation-slider' 
+          type="range"
+          min='-360'
+          max='360'
+          step='1'
+          value={designRotation}
+          onChange={handleRotationChange}
+          className='slider'
         />
         <span>{Math.round(designScale * 100)}%</span>
+        <span>{designRotation}°</span>
       </div>
       <form onSubmit={handlePurchase}>
         <div className="details-section">
