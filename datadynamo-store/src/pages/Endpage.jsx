@@ -1,7 +1,7 @@
 import '../index.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const orderConfirmed = () => {
+const OrderConfirmed = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -31,4 +31,4 @@ const orderConfirmed = () => {
     )
 }
 
-export default orderConfirmed
+export default OrderConfirmed
