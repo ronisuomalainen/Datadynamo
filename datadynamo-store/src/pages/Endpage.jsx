@@ -24,6 +24,7 @@ const OrderConfirmed = () => {
                     <p><strong>Tuote: </strong>{order.product}</p>
                     <p><strong>Määrä: </strong>{order.quantity}</p>
                     <p><strong>Hinta: </strong>{order.price}€</p>
+                    <h3>Tiedot lähetetty myös sähköpostilla.</h3>
                     <button onClick={handleExit} className='button'>Takaisin</button>
                 </div>
             )}
