@@ -1,9 +1,15 @@
 import '../index.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const orderConfirmed = () => {
     const location = useLocation()
+    const navigate = useNavigate()
+
     const order = location.state?.order
+
+    const handleExit = () => {
+        navigate('/store')
+    }
 
     return ( 
         <div className='endpage-container'>
@@ -18,6 +24,7 @@ const orderConfirmed = () => {
                     <p><strong>Tuote: </strong>{order.product}</p>
                     <p><strong>Määrä: </strong>{order.quantity}</p>
                     <p><strong>Hinta: </strong>{order.price}€</p>
+                    <button onClick={handleExit} className='button'>Takaisin</button>
                 </div>
             )}
         </div>
