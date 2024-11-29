@@ -604,3 +604,36 @@ form button:hover {
 .filepicker-button:hover {
   background-color: var(--button-hover-background);
 }
+
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.quantity-display {
+  width: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.delete-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: gray;
+}
+
+.delete-icon:hover {
+  color: red;
+}

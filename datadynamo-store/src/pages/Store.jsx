@@ -15,6 +15,8 @@ const Store = () => {
   const [startX, setStartX] = useState(0)
   const [startY, setStartY] = useState(0)
 
+  const [quantity, setQuantity] = useState(1);
+
   const handlePurchase = (e) => {
     e.preventDefault()
     navigate('/order') 
@@ -51,7 +53,20 @@ const Store = () => {
     document.removeEventListener('mousemove', handleMouseMove)
     document.removeEventListener('mouseup', handleMouseUp)
   }
+
+  const handleQuantityIncrease = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleQuantityDecrease = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
   
+  const handleInputChange = (e) => {
+    const { id, value } = e.target
+    setFormData({ ...formData, [id]: value })
+  }
+
   return (
     <div className="store-content">
       <div className="image-section">
@@ -74,7 +89,7 @@ const Store = () => {
           )}
         </div>
         <FilePicker onFileSelect={setUploadedImage}/>
-        <label htmlFor="scale-slider">Säädä kuvan kokoa</label>
+        <label htmlFor="scale-slider">Säädä kuvan kokoa {Math.round(designScale * 100)}%</label>
         <input
           id='scale-slider' 
           type="range"
@@ -85,7 +100,7 @@ const Store = () => {
           onChange={handleScaleChange}
           className='slider'
         />
-        <label htmlFor="rotation-slider">Käännä kuvaa</label>
+        <label htmlFor="rotation-slider">Käännä kuvaa {designRotation}°</label>
         <input
           id='rotation-slider' 
           type="range"
@@ -96,14 +111,40 @@ const Store = () => {
           onChange={handleRotationChange}
           className='slider'
         />
-        <span>{Math.round(designScale * 100)}%</span>
-        <span>{designRotation}°</span>
       </div>
       <form onSubmit={handlePurchase}>
         <div className="details-section">
-          <p>Hiirimatto omalla designillä</p>
-          <p>20cm x 35cm - 40€</p>
-          <button className='purchase_Btn'>Osta</button>
+          <h2>Hiirimatto omalla designillä</h2>
+          <select id="size" onChange={handleInputChange} required>
+                <option defaultValue="">Valitse koko</option>
+                <option value="small">Small 18€/kpl</option>
+                <option value="normal">Normal 30€/kpl</option>
+                <option value="large">Large 45€/kpl</option>
+          </select>
+          <div className="quantity-selector">
+            <button
+              type="button"
+              className="quantity-button"
+              onClick={handleQuantityDecrease}
+            >
+              -
+            </button>
+            <span className="quantity-display">{quantity}</span>
+            <button
+              type="button"
+              className="quantity-button"
+              onClick={handleQuantityIncrease}
+            >
+              +
+            </button>
+          </div>
+            <button className='purchase_Btn'>Osta</button>
+            <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
+            <p>Tuotteiden koot:<p></p>
+              Small: K 27cm x L 32cm<p></p>
+              Medium: K 40cm x L 45cm<p></p>
+              Large: K 40cm x L 90cm
+            </p>
         </div>
       </form>
     </div>
