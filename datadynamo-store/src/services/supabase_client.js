@@ -122,3 +122,72 @@ export async function deleteUser() {
     return { error: error.message }
   }
 }
+
+export async function sendConfirmationEmail(order) {
+  const { name, email, product, quantity, price } = order;
+
+  const emailContent = `
+    <p>Hei ${name},</p>
+    <p>Kiitos tilauksestasi Datadynamolta</p>
+    <p>Olet tilannut seuraavat tuotteet:</p>
+    <ul>
+      <li><strong>Tuote: </strong>${product}</li>
+      <li><strong>Määrä: </strong>${quantity}</li>
+      <li><strong>Hinta: </strong>${price}€</li>
+    </ul>
+    <p>Tilaus on käsittelyssä ja se lähetetään pian.</p>
+    <p>Ystävällisin terveisin,</p>
+    <p>Datadynamo</p>
+  `;
+
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const sendGridUrl = 'https://api.sendgrid.com/v3/mail/send';
+
+  try {
+    const response = await fetch(proxyUrl + sendGridUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer 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`,
+      },
+      body: JSON.stringify({
+        personalizations: [
+          {
+            to: [{ email: email }],
+            subject: 'Datadynamo tilausvahvistus',
+          },
+        ],
+        from: {
+          email: 'roni.suomalainen@edu.lapinamk.fi',
+        },
+        content: [
+          {
+            type: 'text/html',
+            value: emailContent,
+          },
+        ],
+      }),
+    });
+
+    // Check if response body exists before parsing it as JSON
+    if (response.ok) {
+      // No need to parse if the response body is empty
+      if (response.status === 202) {
+        console.log("Email successfully accepted for sending.");
+        return { success: "Tilausvahvistus lähetetty onnistuneesti!" };
+      } else {
+        const result = await response.json();
+        console.log(result);
+        return { success: result.success || "Email sent, but no success message returned." };
+      }
+    } else {
+      // If the response is not OK, log and handle errors
+      const errorText = await response.text();
+      console.error("Error response: ", errorText);
+      return { error: "Tilausvahvistusta ei voitu lähettää." };
+    }
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { error: 'Tilausvahvistusta ei voitu lähettää.' };
+  }
+}

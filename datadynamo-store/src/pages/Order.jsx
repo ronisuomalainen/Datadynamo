@@ -1,7 +1,7 @@
 import '../index.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { supabase } from '../services/supabase_client'
+import { supabase, sendConfirmationEmail } from '../services/supabase_client'
 
 const Order = () => {
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ const Order = () => {
             }
         }
         getUserData()
-    })
+    }, [])
 
     const handleInputChange = (e) => {
         const { id, value } = e.target
@@ -35,35 +35,54 @@ const Order = () => {
     }
 
     const handleOrder = async (e) => {
-        e.preventDefault()
-        const product = "Mouse pad"
+        e.preventDefault() // Prevents page reload
+    
+        const product = "Hiirimatto"
         const quantity = 1
         const price = 40
         const designUrl = ''
-
-        const { data, error } = await supabase
-            .from('orders')
-            .insert({
-                name: formData.name,
-                email: formData.email,
-                address: formData.address,
-                city: formData.city,
-                payment_method: formData.payment,
-                product: product,
-                quantity: quantity,
-                price: price,
-                design_url: designUrl,
-            })
-            .select('*')
-
+    
+        try {
+            const { data, error } = await supabase
+                .from('orders')
+                .insert({
+                    name: formData.name,
+                    email: formData.email,
+                    address: formData.address,
+                    city: formData.city,
+                    payment_method: formData.payment,
+                    product: product,
+                    quantity: quantity,
+                    price: price,
+                    design_url: designUrl,
+                })
+                .select('*')
+    
             if (error) {
                 console.error('Error creating order: ', error)
                 alert('Tilaus epäonnistui, yritä uudelleen.')
-            } else {
-                console.log('Order created: ', data)
-                navigate('/endpage', { state: { order: data[0] } })
+                return
             }
+    
+            console.log('Order created: ', data)
+    
+            // Proceed with sending email confirmation
+            const emailResponse = await sendConfirmationEmail(data[0])
+            if (emailResponse.error) {
+                console.error(emailResponse.error)
+            } else {
+                console.log(emailResponse.success)
+            }
+    
+            // Navigate to the end page with order data
+            navigate('/endpage', { state: { order: data[0] } })
+    
+        } catch (error) {
+            console.error('Error during order processing: ', error)
+            alert('Tilaus epäonnistui, yritä uudelleen.')
+        }
     }
+    
 
 return (
     <div className="form-container">
@@ -79,12 +98,12 @@ return (
 
             <label htmlFor="payment">Valitse maksutapa</label>
             <select id="payment" value={formData.payment} onChange={handleInputChange} required>
-                <option defaultValue="">Valitse maksutapa</option>
+                <option value="">Valitse maksutapa</option>
                 <option value="visa">Visa</option>
                 <option value="mastercard">MasterCard</option>
                 <option value="paypal">PayPal</option>
             </select>
-        <button type="submit">Maksa</button>
+            <button type="submit">Maksa</button>
         </form>
     </div>
   )
