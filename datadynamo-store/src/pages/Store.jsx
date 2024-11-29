@@ -15,7 +15,7 @@ const Store = () => {
   const [startX, setStartX] = useState(0)
   const [startY, setStartY] = useState(0)
 
-  const [quantity, setQuantity] = useState(1);
+  
 
   const handlePurchase = (e) => {
     e.preventDefault()
@@ -54,12 +54,18 @@ const Store = () => {
     document.removeEventListener('mouseup', handleMouseUp)
   }
 
-  const handleQuantityIncrease = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    setQuantity(prev => prev + 1);
   };
 
-  const handleQuantityDecrease = () => {
-    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  const decreaseQuantity = () => {
+    if (quantity > 1) setQuantity(prev => prev - 1);
+  };
+
+  const resetQuantity = () => {
+    setQuantity(1);
   };
   
   const handleInputChange = (e) => {
@@ -122,21 +128,10 @@ const Store = () => {
                 <option value="large">Large 45€/kpl</option>
           </select>
           <div className="quantity-selector">
-            <button
-              type="button"
-              className="quantity-button"
-              onClick={handleQuantityDecrease}
-            >
-              -
-            </button>
-            <span className="quantity-display">{quantity}</span>
-            <button
-              type="button"
-              className="quantity-button"
-              onClick={handleQuantityIncrease}
-            >
-              +
-            </button>
+              <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
+              <div className="quantity-display">{quantity}</div>
+              <button type="button" onClick={increaseQuantity} className="quantity-button">+</button>
+              <div className="delete-icon" onClick={resetQuantity}>🗑️</div>
           </div>
             <button className='purchase_Btn'>Osta</button>
             <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>

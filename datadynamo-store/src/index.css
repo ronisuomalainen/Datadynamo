@@ -617,6 +617,7 @@ form button:hover {
   height: 30px;
   border: none;
   background: #ffffff;
+  color: #000000;
   border-radius: 50%;
   cursor: pointer;
   text-align: center;
@@ -634,6 +635,3 @@ form button:hover {
   color: gray;
 }
 
-.delete-icon:hover {
-  color: red;
-}
