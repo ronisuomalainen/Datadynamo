@@ -304,7 +304,7 @@ button[type="submit"]:hover {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: var(buttonte);
+  color: var(--button-text-color);
   background-color: var(--button-background);
   border: none;
   border-radius: var(--button-border-radius);
