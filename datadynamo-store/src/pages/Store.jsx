@@ -131,13 +131,13 @@ const Store = () => {
               <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
               <div className="quantity-display">{quantity}</div>
               <button type="button" onClick={increaseQuantity} className="quantity-button">+</button>
-              <div className="delete-icon" onClick={resetQuantity}>🗑️</div>
+              <div className="reset-icon" onClick={resetQuantity}>↻</div>
           </div>
             <button className='purchase_Btn'>Osta</button>
             <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
-            <p>Tuotteiden koot:<p></p>
-              Small: K 27cm x L 32cm<p></p>
-              Medium: K 40cm x L 45cm<p></p>
+            <p><h2><strong>Tuotteiden koot:</strong></h2><p />
+              Small: K 27cm x L 32cm<p />
+              Medium: K 40cm x L 45cm<p />
               Large: K 40cm x L 90cm
             </p>
         </div>
