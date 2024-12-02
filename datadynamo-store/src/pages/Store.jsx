@@ -64,11 +64,11 @@ const Store = () => {
     const selectedSize = e.target.value
     setSize(selectedSize)
 
-    if (selectedSize === 'small') {
+    if (selectedSize === 'Small') {
       setPrice(18)
-    } else if (selectedSize === 'normal') {
+    } else if (selectedSize === 'Normal') {
       setPrice(30)
-    } else if (selectedSize === 'large') {
+    } else if (selectedSize === 'Large') {
       setPrice(45)
     } else {
       setPrice(0)
@@ -155,9 +155,9 @@ const Store = () => {
           <h2>Hiirimatto omalla designillä</h2>
           <select id="size" onChange={handleSizeChange} required>
             <option defaultValue="">Valitse koko</option>
-            <option value="small">Small 18€</option>
-            <option value="normal">Normal 30€</option>
-            <option value="large">Large 45€</option>
+            <option value="Small">Small 18€</option>
+            <option value="Normal">Normal 30€</option>
+            <option value="Large">Large 45€</option>
           </select>
           <div className="quantity-selector">
             <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
