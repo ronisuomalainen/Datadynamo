@@ -353,6 +353,21 @@ button[type="submit"]:hover {
   object-fit: contain;
 }
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 100%;
+}
+
 .mouse-mat {
   position: relative;
   border-radius: 16px;
@@ -368,7 +383,6 @@ button[type="submit"]:hover {
 }
 
 .design {
-  cursor: grab;
   user-select: none;
   position: absolute;
 }
@@ -379,6 +393,26 @@ button[type="submit"]:hover {
 
 .slider {
   width: 300px;
+}
+
+.vertical-slider {
+  position: absolute;
+  left: -48.5%;
+  top: 5%;
+  writing-mode: vertical-lr;
+  height: 90%;
+  transform-origin: center center;
+}
+
+.horizontal-slider {
+  position: absolute;
+  top: 94%;
+  width: 90%;
+  transform-origin: center center;
+}
+
+.position-sliders {
+  margin-top: 20px;
 }
 
 /* Details Section */
