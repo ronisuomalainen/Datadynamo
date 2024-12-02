@@ -114,30 +114,33 @@ const Store = () => {
             className="horizontal-slider"
           />
         </div>
-        
-        <FilePicker onFileSelect={setUploadedImage} />
-        <label htmlFor="scale-slider">Säädä kuvan kokoa {Math.round(designScale * 100)}%</label>
-        <input
-          id="scale-slider"
-          type="range"
-          min="0.1"
-          max="2"
-          step="0.01"
-          value={designScale}
-          onChange={handleScaleChange}
-          className="slider"
-        />
-        <label htmlFor="rotation-slider">Käännä kuvaa {designRotation}°</label>
-        <input
-          id="rotation-slider"
-          type="range"
-          min="-360"
-          max="360"
-          step="1"
-          value={designRotation}
-          onChange={handleRotationChange}
-          className="slider"
-        />
+        <div className='image-controls'>
+          <FilePicker onFileSelect={setUploadedImage} />
+          <div className='controls-container'>
+            <label htmlFor="scale-slider">Säädä kuvan kokoa {Math.round(designScale * 100)}%</label>
+            <input
+              id="scale-slider"
+              type="range"
+              min="0.1"
+              max="2"
+              step="0.01"
+              value={designScale}
+              onChange={handleScaleChange}
+              className="slider"
+            />
+            <label htmlFor="rotation-slider">Käännä kuvaa {designRotation}°</label>
+            <input
+              id="rotation-slider"
+              type="range"
+              min="-360"
+              max="360"
+              step="1"
+              value={designRotation}
+              onChange={handleRotationChange}
+              className="slider"
+            />
+          </div>
+        </div>
       </div>
 
       <form onSubmit={handlePurchase}>
