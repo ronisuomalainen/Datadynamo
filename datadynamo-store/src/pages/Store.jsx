@@ -19,7 +19,11 @@ const Store = () => {
 
   const handlePurchase = (e) => {
     e.preventDefault()
-    navigate('/order', { state: { size, price, quantity } }) 
+    if (price > 0) {
+      navigate('/order', { state: { size, price, quantity } }) 
+    } else {
+      alert('Valitse hiirimaton koko')
+    }
   }
 
   const handleScaleChange = (e) => {

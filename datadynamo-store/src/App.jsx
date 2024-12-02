@@ -13,6 +13,7 @@ import Endpage from './pages/Endpage.jsx'
 import Navbar from './components/NavBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import GuestRoute from './components/GuestRoute.jsx'
+import Payment from './components/Payment.jsx'
 
 
 function App() {
@@ -114,6 +115,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <Endpage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoute user={user}>
+                <Payment />
               </ProtectedRoute>
             }
           />

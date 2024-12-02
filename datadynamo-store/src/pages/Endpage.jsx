@@ -8,31 +8,40 @@ const Endpage = () => {
     const order = location.state?.order
     const price = location.state?.price
 
-    const handleExit = () => {
-        navigate('/store')
+    if (!order) {
+        return (
+			<div>
+				Error: No order data available.
+            	<button onClick={() => navigate('/store')} className='button'>Takaisin</button>
+			</div>
+		)
     }
 
-    return ( 
+    const { name, email, address, city, product, size, quantity, price: orderPrice } = order
+    const totalPrice = price || orderPrice
+
+    return (
         <div className='endpage-container'>
             <h1>Kiitos tilauksesta!</h1>
             {order && (
                 <div className='order-details'>
                     <h2>Tilaustiedot</h2>
-                    <p><strong>Nimi: </strong>{order.name}</p>
-                    <p><strong>Sähköposti: </strong>{order.email}</p>
-                    <p><strong>Osoite: </strong>{order.address}</p>
+                    <p><strong>Nimi: </strong>{name}</p>
+                    <p><strong>Sähköposti: </strong>{email}</p>
+                    <p><strong>Osoite: </strong>{address}</p>
                     <p><strong>Maksutapa: </strong>{order.payment_method}</p>
-                    <p><strong>Tuote: </strong>{order.product}</p>
-                    <p><strong>Koko: </strong>{order.size}</p>
-                    <p><strong>Määrä: </strong>{order.quantity}</p>
+                    <p><strong>Tuote: </strong>{product}</p>
+                    <p><strong>Koko: </strong>{size || "Ei valittu"}</p>
+                    <p><strong>Määrä: </strong>{quantity || "Ei valittu"}</p>
                     <p><strong>Yksikköhinta: </strong>{price}€</p>
-                    <p><strong>Kokonaishinta: </strong>{order.price}€</p>
+                    <p><strong>Kokonaishinta: </strong>{totalPrice}€</p>
                     <h3>Tiedot lähetetty myös sähköpostilla.</h3>
-                    <button onClick={handleExit} className='button'>Takaisin</button>
                 </div>
             )}
+            <button onClick={() => navigate('/store')} className='button'>Takaisin</button>
         </div>
     )
 }
+
 
 export default Endpage
