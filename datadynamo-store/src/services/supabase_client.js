@@ -124,24 +124,26 @@ export async function deleteUser() {
 }
 
 export async function sendConfirmationEmail(order) {
-  const { name, email, product, quantity, price } = order;
+  const { name, email, product, quantity, price, size, address, city } = order
 
   const emailContent = `
     <p>Hei ${name},</p>
-    <p>Kiitos tilauksestasi Datadynamolta</p>
+    <p>Kiitos tilauksestasi Datadynamolta!</p>
     <p>Olet tilannut seuraavat tuotteet:</p>
     <ul>
       <li><strong>Tuote: </strong>${product}</li>
       <li><strong>Määrä: </strong>${quantity}</li>
+      <li><strong>Koko: </strong>${size}</li>
       <li><strong>Hinta: </strong>${price}€</li>
+      <li><strong>Toimitusosoite: </strong>${address}, ${city}</li>
     </ul>
     <p>Tilaus on käsittelyssä ja se lähetetään pian.</p>
     <p>Ystävällisin terveisin,</p>
     <p>Datadynamo</p>
-  `;
+  `
 
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-  const sendGridUrl = 'https://api.sendgrid.com/v3/mail/send';
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  const sendGridUrl = 'https://api.sendgrid.com/v3/mail/send'
 
   try {
     const response = await fetch(proxyUrl + sendGridUrl, {
@@ -167,27 +169,24 @@ export async function sendConfirmationEmail(order) {
           },
         ],
       }),
-    });
+    })
 
-    // Check if response body exists before parsing it as JSON
     if (response.ok) {
-      // No need to parse if the response body is empty
       if (response.status === 202) {
-        console.log("Email successfully accepted for sending.");
-        return { success: "Tilausvahvistus lähetetty onnistuneesti!" };
+        console.log("Email successfully accepted for sending.")
+        return { success: "Tilausvahvistus lähetetty onnistuneesti!" }
       } else {
-        const result = await response.json();
-        console.log(result);
-        return { success: result.success || "Email sent, but no success message returned." };
+        const result = await response.json()
+        console.log(result)
+        return { success: result.success || "Email sent, but no success message returned." }
       }
     } else {
-      // If the response is not OK, log and handle errors
-      const errorText = await response.text();
-      console.error("Error response: ", errorText);
-      return { error: "Tilausvahvistusta ei voitu lähettää." };
+      const errorText = await response.text()
+      console.error("Error response: ", errorText)
+      return { error: "Tilausvahvistusta ei voitu lähettää." }
     }
   } catch (error) {
-    console.error('Error sending email:', error);
-    return { error: 'Tilausvahvistusta ei voitu lähettää.' };
+    console.error('Error sending email:', error)
+    return { error: 'Tilausvahvistusta ei voitu lähettää.' }
   }
 }

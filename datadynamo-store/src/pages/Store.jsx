@@ -15,11 +15,13 @@ const Store = () => {
   const [startX, setStartX] = useState(0)
   const [startY, setStartY] = useState(0)
 
-  
+  const [quantity, setQuantity] = useState(1)
+  const [size, setSize] = useState('')
+  const [price, setPrice] = useState(0)
 
   const handlePurchase = (e) => {
     e.preventDefault()
-    navigate('/order') 
+    navigate('/order', { state: { size, price, quantity } }) 
   }
 
   const handleScaleChange = (e) => {
@@ -54,27 +56,31 @@ const Store = () => {
     document.removeEventListener('mouseup', handleMouseUp)
   }
 
-  const [quantity, setQuantity] = useState(1);
-
   const increaseQuantity = () => {
-    setQuantity(prev => prev + 1);
-  };
+    setQuantity(prev => prev + 1)
+  }
 
   const decreaseQuantity = () => {
-    if (quantity > 1) setQuantity(prev => prev - 1);
-  };
+    if (quantity > 1) setQuantity(prev => prev - 1)
+  }
 
   const resetQuantity = () => {
-    setQuantity(1);
-  };
+    setQuantity(1)
+  }
 
-  const handleQuantity = () => {
-    navigate('/order', {state: {quantity}});
-  };
-  
-  const handleInputChange = (e) => {
-    const { id, value } = e.target
-    setFormData({ ...formData, [id]: value })
+  const handleSizeChange = (e) => {
+    const selectedSize = e.target.value
+    setSize(selectedSize)
+
+    if (selectedSize === 'small') {
+      setPrice(18)
+    } else if (selectedSize === 'normal') {
+      setPrice(30)
+    } else if (selectedSize === 'large') {
+      setPrice(45)
+    } else {
+      setPrice(0)
+    }
   }
 
   return (
@@ -125,25 +131,26 @@ const Store = () => {
       <form onSubmit={handlePurchase}>
         <div className="details-section">
           <h2>Hiirimatto omalla designillä</h2>
-          <select id="size" onChange={handleInputChange} required>
+          <select id="size" onChange={handleSizeChange} required>
                 <option defaultValue="">Valitse koko</option>
-                <option value="small">Small 18€/kpl</option>
-                <option value="normal">Normal 30€/kpl</option>
-                <option value="large">Large 45€/kpl</option>
+                <option value="small">Small 18€</option>
+                <option value="normal">Normal 30€</option>
+                <option value="large">Large 45€</option>
           </select>
           <div className="quantity-selector">
-              <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
-              <div className="quantity-display">{quantity}</div>
-              <button type="button" onClick={increaseQuantity} className="quantity-button">+</button>
-              <div className="reset-icon" onClick={resetQuantity}>↻</div>
+            <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
+            <div className="quantity-display">{quantity}</div>
+            <button type="button" onClick={increaseQuantity} className="quantity-button">+</button>
+            <div className="reset-icon" onClick={resetQuantity}>↻</div>
           </div>
-            <button type='button'onClick={handleQuantity} className='purchase_Btn'>Osta</button>
-            <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
-            <p><h2><strong>Tuotteiden koot:</strong></h2><p />
-              Small: K 27cm x L 32cm<p />
-              Medium: K 40cm x L 45cm<p />
-              Large: K 40cm x L 90cm
-            </p>
+          <p><strong>Hinta yhteensä:</strong> {price * quantity} €</p>
+          <button type='submit' className='purchase_Btn'>Osta</button>
+          <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
+          <p><h2><strong>Tuotteiden koot:</strong></h2><p />
+            Small: K 27cm x L 32cm<p />
+            Medium: K 40cm x L 45cm<p />
+            Large: K 40cm x L 90cm
+          </p>
         </div>
       </form>
     </div>

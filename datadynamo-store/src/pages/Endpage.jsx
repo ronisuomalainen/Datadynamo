@@ -1,12 +1,12 @@
 import '../index.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const OrderConfirmed = () => {
+const Endpage = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
     const order = location.state?.order
-    
+    const price = location.state?.price
 
     const handleExit = () => {
         navigate('/store')
@@ -23,8 +23,10 @@ const OrderConfirmed = () => {
                     <p><strong>Osoite: </strong>{order.address}</p>
                     <p><strong>Maksutapa: </strong>{order.payment_method}</p>
                     <p><strong>Tuote: </strong>{order.product}</p>
+                    <p><strong>Koko: </strong>{order.size}</p>
                     <p><strong>Määrä: </strong>{order.quantity}</p>
-                    <p><strong>Hinta: </strong>{order.price}€</p>
+                    <p><strong>Yksikköhinta: </strong>{price}€</p>
+                    <p><strong>Kokonaishinta: </strong>{order.price}€</p>
                     <h3>Tiedot lähetetty myös sähköpostilla.</h3>
                     <button onClick={handleExit} className='button'>Takaisin</button>
                 </div>
@@ -33,4 +35,4 @@ const OrderConfirmed = () => {
     )
 }
 
-export default OrderConfirmed
+export default Endpage

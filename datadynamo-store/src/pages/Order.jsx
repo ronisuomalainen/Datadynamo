@@ -3,14 +3,15 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase, sendConfirmationEmail } from '../services/supabase_client'
 
-
 const Order = () => {
     const location = useLocation()
     const navigate = useNavigate()
     
+    const size = location.state?.size
+    const price = location.state?.price
     const quantity = location.state?.quantity
+    const totalPrice = price * quantity
     
-
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -40,10 +41,9 @@ const Order = () => {
     }
 
     const handleOrder = async (e) => {
-        e.preventDefault() // Prevents page reload
+        e.preventDefault()
     
         const product = "Hiirimatto"
-        const price = 40
         const designUrl = ''
     
         try {
@@ -56,11 +56,13 @@ const Order = () => {
                     city: formData.city,
                     payment_method: formData.payment,
                     product: product,
+                    size: size,
                     quantity: quantity,
-                    price: price,
+                    price: totalPrice,
                     design_url: designUrl,
                 })
                 .select('*')
+            console.log('Response from supabase: ', { data, error })
     
             if (error) {
                 console.error('Error creating order: ', error)
@@ -70,7 +72,6 @@ const Order = () => {
     
             console.log('Order created: ', data)
     
-            // Proceed with sending email confirmation
             const emailResponse = await sendConfirmationEmail(data[0])
             if (emailResponse.error) {
                 console.error(emailResponse.error)
@@ -78,8 +79,7 @@ const Order = () => {
                 console.log(emailResponse.success)
             }
     
-            // Navigate to the end page with order data
-            navigate('/endpage', { state: { order: data[0] } })
+            navigate('/endpage', { state: { order: data[0], price: price } })
     
         } catch (error) {
             console.error('Error during order processing: ', error)
@@ -87,9 +87,14 @@ const Order = () => {
         }
     }
     
-
 return (
     <div className="form-container">
+        <h2>Tilauksen tiedot</h2>
+        <p><strong>Koko:</strong> {size}</p>
+        <p><strong>Yksikköhinta:</strong> {price}€</p>
+        <p><strong>Määrä:</strong> {quantity}</p>
+        <p><strong>Kokonaishinta:</strong> {totalPrice}€</p>
+
         <form onSubmit={handleOrder}>
             <label htmlFor="name">Nimi</label>
             <input type="text" id="name" value={formData.name} onChange={handleInputChange} required/>
