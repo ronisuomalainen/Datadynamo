@@ -75,6 +75,12 @@ const Store = () => {
     }
   }
 
+  const handleDesignReset = () => {
+    setDesignScale(1)
+    setDesignPosition({ x: 0, y: 0 })
+    setDesignRotation(0)
+  } 
+
   return (
     <div className="store-content">
       <div className="image-section">
@@ -140,6 +146,7 @@ const Store = () => {
               className="slider"
             />
           </div>
+          <div onClick={handleDesignReset} className='design-reset-icon'>↻</div>
         </div>
       </div>
 

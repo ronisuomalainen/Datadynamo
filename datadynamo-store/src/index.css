@@ -689,3 +689,12 @@ form button:hover {
   margin-left: 10px;
   justify-content: flex-end;
 }
+
+.design-reset-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text-color);
+  margin-left: 10px;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
