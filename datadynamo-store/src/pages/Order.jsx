@@ -1,10 +1,15 @@
 import '../index.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase, sendConfirmationEmail } from '../services/supabase_client'
 
+
 const Order = () => {
+    const location = useLocation()
     const navigate = useNavigate()
+    
+    const quantity = location.state?.quantity
+    
 
     const [formData, setFormData] = useState({
         name: '',
@@ -38,7 +43,6 @@ const Order = () => {
         e.preventDefault() // Prevents page reload
     
         const product = "Hiirimatto"
-        const quantity = 1
         const price = 40
         const designUrl = ''
     

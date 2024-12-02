@@ -6,6 +6,7 @@ const OrderConfirmed = () => {
     const navigate = useNavigate()
 
     const order = location.state?.order
+    
 
     const handleExit = () => {
         navigate('/store')

@@ -67,6 +67,10 @@ const Store = () => {
   const resetQuantity = () => {
     setQuantity(1);
   };
+
+  const handleQuantity = () => {
+    navigate('/order', {state: {quantity}});
+  };
   
   const handleInputChange = (e) => {
     const { id, value } = e.target
@@ -133,7 +137,7 @@ const Store = () => {
               <button type="button" onClick={increaseQuantity} className="quantity-button">+</button>
               <div className="reset-icon" onClick={resetQuantity}>↻</div>
           </div>
-            <button className='purchase_Btn'>Osta</button>
+            <button type='button'onClick={handleQuantity} className='purchase_Btn'>Osta</button>
             <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
             <p><h2><strong>Tuotteiden koot:</strong></h2><p />
               Small: K 27cm x L 32cm<p />
