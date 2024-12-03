@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     <div className="dashboard-container">
       <h2>Viimeiset 10 tilausta</h2>
       <table>
-        <thread>
+        <thead>
           <tr>
             <th>Nimi</th>
             <th>Tuote</th>
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
             <th>Kokonaishinta</th>
             <th>Päivämäärä</th>
           </tr>
-        </thread>
+        </thead>
         <tbody>
           {orders.map((order) => (
             <tr key={order.id}>
