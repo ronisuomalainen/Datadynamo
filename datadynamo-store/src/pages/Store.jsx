@@ -14,7 +14,7 @@ const Store = () => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState('')
   const [price, setPrice] = useState(0)
-  const [mouseMatColor, setMouseMatColor] = useState('#ffffff')
+  const [mouseMatColor, setMouseMatColor] = useState('#080808')
 
   const mouseMatRef = useRef(null)
 
@@ -93,7 +93,7 @@ const Store = () => {
   return (
     <div className="store-content">
       <div className="image-section">
-        <div className="mouse-mat" ref={mouseMatRef}>
+        <div className="mouse-mat" ref={mouseMatRef} style={{ backgroundColor: mouseMatColor }}>
           {uploadedImage && (
             <img
               src={uploadedImage}
@@ -131,21 +131,11 @@ const Store = () => {
         </div>
         <div className='image-controls'>
           <div className='controls-container'>
-            <button
-              id='color-slider'
-              type='color'
-              value={mouseMatColor}
-              onClick={() => document.getElementById('hidden-color-picker').click()}
-              className='button' 
-            >
-              Valitse taustaväri
-            </button>
+            <label htmlFor='color-picker'>Valitse taustaväri</label>
             <input
-              id="hidden-color-picker"
               type="color"
               value={mouseMatColor}
               onChange={handleColorChange}
-              className='hidden-color-picker'
             />
           </div>
           <FilePicker onFileSelect={setUploadedImage} />

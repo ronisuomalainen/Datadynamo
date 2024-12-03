@@ -377,6 +377,16 @@ button[type="submit"]:hover {
   max-width: 100%;
 }
 
+input[type="color"] {
+  position: relative;
+  margin-top: 5px;
+  z-index: 10;
+  padding: 0;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+}
+
 .mouse-mat {
   position: relative;
   border-radius: 16px;

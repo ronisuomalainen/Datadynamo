@@ -76,7 +76,7 @@ const AdminDashboard = () => {
               <td>{order.product}</td>
               <td>{order.size}</td>
               <td>{order.quantity}</td>
-              <td>{order.totalPrice}</td>
+              <td>{order.price}</td>
               <td>{new Date(order.created_at).toLocaleString()}</td>
               <td></td>
             </tr>
