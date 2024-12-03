@@ -68,11 +68,11 @@ const Store = () => {
     const selectedSize = e.target.value
     setSize(selectedSize)
 
-    if (selectedSize === 'Small') {
+    if (selectedSize === 'S') {
       setPrice(18)
-    } else if (selectedSize === 'Normal') {
+    } else if (selectedSize === 'M') {
       setPrice(30)
-    } else if (selectedSize === 'Large') {
+    } else if (selectedSize === 'L') {
       setPrice(45)
     } else {
       setPrice(0)
@@ -159,9 +159,9 @@ const Store = () => {
           <h2>Hiirimatto omalla designillä</h2>
           <select id="size" onChange={handleSizeChange} required>
             <option defaultValue="">Valitse koko</option>
-            <option value="Small">Pieni 18€</option>
-            <option value="Normal">Keskikokoinen 30€</option>
-            <option value="Large">Suuri 45€</option>
+            <option value="S">S 18€</option>
+            <option value="M">M 30€</option>
+            <option value="L">L 45€</option>
           </select>
           <div className="quantity-selector">
             <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
@@ -174,9 +174,9 @@ const Store = () => {
           <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
           <div className='sizes'>
             <h2><strong>Tuotteiden koot:</strong></h2>
-            Small: K 27cm x L 32cm <br />
-            Medium: K 40cm x L 45cm <br />
-            Large: K 40cm x L 90cm <br />
+            S: K 27cm x L 32cm <br />
+            M: K 40cm x L 45cm <br />
+            L: K 40cm x L 90cm <br />
           </div>
         </div>
       </form>

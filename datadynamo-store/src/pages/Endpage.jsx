@@ -18,7 +18,7 @@ const Endpage = () => {
     }
 
     const { name, email, address, city, product, size, quantity, price: orderPrice } = order
-    const totalPrice = price || orderPrice
+    const totalPrice = price || orderPrice || 0
 
     return (
         <div className='endpage-container'>

@@ -15,35 +15,37 @@ const Payment = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const size = location.state?.size
-  const price = location.state?.price
-  const quantity = location.state?.quantity
-  const totalPrice = price * quantity
-  const user = location.state?.user
+  const { size, price, quantity, totalPrice, user } = location.state
+
+  /*const handleAmount = () => {
+    const calculatedPrice = totalPrice * 100
+    console.log('Calculated price: ', calculatedPrice)
+    setAmount(calculatedPrice)
+    console.log('Amount: ', amount)
+  }*/
 
   const handlePayment = async () => {
-    if (!stripe || !elements) {
-        return
-    }
+    //handleAmount()
+
+    if (!stripe || !elements) return
 
     setLoading(true)
 
     try {
+
         const response = await axios.post('http://localhost:4000/create-payment-intent', { amount })
         const clientSecret = response.data.clientSecret
 
         const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement),
-                billing_details: {
-                    name: 'Customer',
-                },
+                billing_details: { name: 'Customer' },
             },
         })
 
         if (error) {
             console.error(error.message)
-            alert(error.message)
+            alert('Maksu ei onnistunut: ', error.message)
         } else if (paymentIntent.status === 'succeeded') {
             alert('Maksu onnistui!')
 
@@ -70,17 +72,22 @@ const Payment = () => {
           return
       }
 
-    const emailResponse = await sendConfirmationEmail(data[0])
-    if (emailResponse.error) {
+      const emailResponse = await sendConfirmationEmail(data[0])
+      if (emailResponse.error) {
         console.error(emailResponse.error)
-    } else {
+      } else {
         console.log('Email sent successfully')
-    }
+      }
 
-    setTimeout(() => {
-      navigate('/endpage', { state: { order: data[0], price: totalPrice } })
-  }, 300)
-}
+      setTimeout(() => {
+        navigate('/endpage', {
+          state: {
+            order: data[0],
+            price: totalPrice,
+          },
+        })
+      }, 300)
+    }
     } catch (error) {
         console.error(error)
         alert('Maksu epäonnistui')
@@ -88,8 +95,6 @@ const Payment = () => {
         setLoading(false)
     }
   }
-
-
 
   return (
     <div className="payment-container">

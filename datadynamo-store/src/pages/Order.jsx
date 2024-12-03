@@ -46,50 +46,17 @@ const Order = () => {
       const product = "Hiirimatto"
       const designUrl = ''
   
-      try {
-          const { data, error } = await supabase
-              .from('orders')
-              .insert({
-                  name: formData.name,
-                  email: formData.email,
-                  address: formData.address,
-                  city: formData.city,
-                  product: product,
-                  size: size,
-                  quantity: quantity,
-                  price: totalPrice,
-                  design_url: designUrl,
-              })
-              .select('*')
-  
-          if (error) {
-              console.error('Error creating order: ', error)
-              alert('Tilaus epäonnistui, yritä uudelleen.')
-              return
+      navigate('/payment', {
+            state: { 
+                size,
+                price,
+                quantity,
+                totalPrice,
+                user: formData
           }
-  
-          console.log('Order created: ', data)
-  
-          // Include the user data in the navigation state
-          navigate('/payment', {
-              state: { 
-                  order: data[0], 
-                  price: totalPrice,
-                  user: { 
-                      name: formData.name, 
-                      email: formData.email, 
-                      address: formData.address,
-                      city: formData.city 
-                  } 
-              }
-          })
-      } catch (error) {
-          console.error('Error during order processing: ', error)
-          alert('Tilaus epäonnistui, yritä uudelleen.')
-      }
+      })
   }
   
-    
     return (
         <div className="form-container">
             <h2>Tilauksen tiedot</h2>
