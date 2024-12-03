@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
@@ -8,7 +8,7 @@ import { supabase, sendConfirmationEmail } from '../services/supabase_client'
 const stripePromise = loadStripe('pk_test_51QRcKAFJyPUoiWyOfn7rJC4mznPSeGoaihQkISmwx9pFgq9SyFh5fU4mAxwsfxq6WeYrXly7sKswEInLTZEenuj300spVxytOA')
 
 const Payment = () => {
-  const [amount, setAmount] = useState(3000)
+  const [amount, setAmount] = useState(0)
   const [loading, setLoading] = useState(false)
   const stripe = useStripe()
   const elements = useElements()
@@ -17,77 +17,74 @@ const Payment = () => {
 
   const { size, price, quantity, totalPrice, user } = location.state
 
-  /*const handleAmount = () => {
-    const calculatedPrice = totalPrice * 100
-    console.log('Calculated price: ', calculatedPrice)
-    setAmount(calculatedPrice)
-    console.log('Amount: ', amount)
-  }*/
+  useEffect(() => {
+    const calcAmount = totalPrice * 100
+    setAmount(calcAmount)
+  }, [totalPrice])
 
   const handlePayment = async () => {
-    //handleAmount()
-
     if (!stripe || !elements) return
 
     setLoading(true)
 
     try {
+      console.log('Payment amount: ', amount)
 
-        const response = await axios.post('http://localhost:4000/create-payment-intent', { amount })
-        const clientSecret = response.data.clientSecret
+      const response = await axios.post('http://localhost:4000/create-payment-intent', { amount })
+      const clientSecret = response.data.clientSecret
 
-        const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: elements.getElement(CardElement),
-                billing_details: { name: 'Customer' },
-            },
-        })
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, { 
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: { name: 'user.name' },
+        },
+      })
 
-        if (error) {
-            console.error(error.message)
-            alert('Maksu ei onnistunut: ', error.message)
-        } else if (paymentIntent.status === 'succeeded') {
-            alert('Maksu onnistui!')
+      if (error) {
+        console.error(error.message)
+        alert('Maksu ei onnistunut: ', error.message)
+      } else if (paymentIntent.status === 'succeeded') {
+        alert('Maksu onnistui!')
 
-            const orderData = {
-              name: user.name,
-              email: user.email,
-              address: user.address,
-              city: user.city,
-              product: "Hiirimatto",
-              size: size,
-              quantity: quantity,
-              price: totalPrice,
-              payment_method: 'Pankkikortti',
-          }
+        const orderData = {
+          name: user.name,
+          email: user.email,
+          address: user.address,
+          city: user.city,
+          product: "Hiirimatto",
+          size: size,
+          quantity: quantity,
+          price: totalPrice,
+          payment_method: 'Pankkikortti',
+        }
 
-          const { data, error: orderError } = await supabase
+        const { data, error: orderError } = await supabase
           .from('orders')
           .insert([orderData])
           .select('*')
   
-      if (orderError) {
+        if (orderError) {
           console.error('Error creating order: ', orderError)
           alert('Tilauksen lähetys epäonnistui. Yritä uudelleen.')
           return
-      }
+        }
 
-      const emailResponse = await sendConfirmationEmail(data[0])
-      if (emailResponse.error) {
-        console.error(emailResponse.error)
-      } else {
-        console.log('Email sent successfully')
-      }
+        const emailResponse = await sendConfirmationEmail(data[0])
+        if (emailResponse.error) {
+          console.error(emailResponse.error)
+        } else {
+          console.log('Email sent successfully')
+        }
 
-      setTimeout(() => {
-        navigate('/endpage', {
-          state: {
-            order: data[0],
-            price: totalPrice,
-          },
-        })
-      }, 300)
-    }
+        setTimeout(() => {
+          navigate('/endpage', {
+            state: {
+              order: data[0],
+              price: totalPrice,
+            },
+          })
+        }, 300)
+      }
     } catch (error) {
         console.error(error)
         alert('Maksu epäonnistui')
