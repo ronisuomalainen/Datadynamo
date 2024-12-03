@@ -102,6 +102,7 @@ const Payment = () => {
             options={{
               style: {
                 base: {
+                  backgroundColor: '#333344',
                   color: '#ffffff',
                   fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
                   fontSize: '16px',
@@ -117,7 +118,7 @@ const Payment = () => {
           />
         </div>
         <button disabled={loading} onClick={handlePayment} className="button">
-          {loading ? 'Processing...' : 'Pay Now'}
+          {loading ? 'Odota...' : 'Maksa nyt'}
         </button>
       </form>
     </div>

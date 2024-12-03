@@ -170,13 +170,14 @@ const Store = () => {
             <div className="reset-icon" onClick={resetQuantity}>↻</div>
           </div>
           <p><strong>Hinta yhteensä:</strong> {price * quantity} €</p>
-          <button type="submit" className="purchase_Btn">Osta</button>
+          <button type="submit" className='purchase_Btn' >Osta</button>
           <p>Mikäli haluat tilata isomman erän ota yhteyttä info@datadynamo.fi</p>
-          <p><h2><strong>Tuotteiden koot:</strong></h2><p />
-            Small: K 27cm x L 32cm<p />
-            Medium: K 40cm x L 45cm<p />
-            Large: K 40cm x L 90cm
-          </p>
+          <div className='sizes'>
+            <h2><strong>Tuotteiden koot:</strong></h2>
+            Small: K 27cm x L 32cm <br />
+            Medium: K 40cm x L 45cm <br />
+            Large: K 40cm x L 90cm <br />
+          </div>
         </div>
       </form>
     </div>
