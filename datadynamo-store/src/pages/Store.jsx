@@ -14,6 +14,7 @@ const Store = () => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState('')
   const [price, setPrice] = useState(0)
+  const [mouseMatColor, setMouseMatColor] = useState('#ffffff')
 
   const mouseMatRef = useRef(null)
 
@@ -85,6 +86,10 @@ const Store = () => {
     setDesignRotation(0)
   } 
 
+  const handleColorChange = (e) => {
+    setMouseMatColor(e.target.value)
+  }
+
   return (
     <div className="store-content">
       <div className="image-section">
@@ -125,6 +130,24 @@ const Store = () => {
           />
         </div>
         <div className='image-controls'>
+          <div className='controls-container'>
+            <button
+              id='color-slider'
+              type='color'
+              value={mouseMatColor}
+              onClick={() => document.getElementById('hidden-color-picker').click()}
+              className='button' 
+            >
+              Valitse taustaväri
+            </button>
+            <input
+              id="hidden-color-picker"
+              type="color"
+              value={mouseMatColor}
+              onChange={handleColorChange}
+              className='hidden-color-picker'
+            />
+          </div>
           <FilePicker onFileSelect={setUploadedImage} />
           <div className='controls-container'>
             <label htmlFor="scale-slider">Säädä kuvan kokoa {Math.round(designScale * 100)}%</label>
