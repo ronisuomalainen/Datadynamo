@@ -45,9 +45,9 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (user) {
-        console.log("Logged in user: ", user.email)
+        //console.log("Logged in user: ", user.email)
       } else {
-        console.log("Not logged in")
+        //console.log("Not logged in")
       }
     }, 5000)
 

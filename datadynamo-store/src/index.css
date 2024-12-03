@@ -734,4 +734,9 @@ form button:hover {
   background-color: var(--input-background);
   border-radius: 6px;
   padding: 12px;
+  color: var(--text-color);
+}
+
+.card-element-container input {
+  color: var(--text-color);
 }

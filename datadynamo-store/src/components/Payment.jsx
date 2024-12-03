@@ -66,7 +66,7 @@ const Payment = () => {
   
       if (orderError) {
           console.error('Error creating order: ', orderError)
-          alert('Order creation failed. Please try again.')
+          alert('Tilauksen lähetys epäonnistui. Yritä uudelleen.')
           return
       }
 
@@ -83,7 +83,7 @@ const Payment = () => {
 }
     } catch (error) {
         console.error(error)
-        alert('Payment failed')
+        alert('Maksu epäonnistui')
     } finally {
         setLoading(false)
     }
@@ -97,7 +97,24 @@ const Payment = () => {
       <form onSubmit={(e) => e.preventDefault()} className="payment-form">
         <label htmlFor="card-element">Pankkikortti</label>
         <div className="card-element-container">
-          <CardElement id="card-element" />
+          <CardElement 
+            id="card-element"
+            options={{
+              style: {
+                base: {
+                  color: '#ffffff',
+                  fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                  fontSize: '16px',
+                  '::placeholder': {
+                    color: 'rgba(255, 255, 255, 0.7)',
+                  },
+                },
+                invalid: {
+                  color: '#ff4d4d',
+                },
+              },
+            }}
+          />
         </div>
         <button disabled={loading} onClick={handlePayment} className="button">
           {loading ? 'Processing...' : 'Pay Now'}

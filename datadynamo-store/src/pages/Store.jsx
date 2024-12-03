@@ -159,9 +159,9 @@ const Store = () => {
           <h2>Hiirimatto omalla designillä</h2>
           <select id="size" onChange={handleSizeChange} required>
             <option defaultValue="">Valitse koko</option>
-            <option value="Small">Small 18€</option>
-            <option value="Normal">Normal 30€</option>
-            <option value="Large">Large 45€</option>
+            <option value="Small">Pieni 18€</option>
+            <option value="Normal">Keskikokoinen 30€</option>
+            <option value="Large">Suuri 45€</option>
           </select>
           <div className="quantity-selector">
             <button type="button" onClick={decreaseQuantity} className="quantity-button">-</button>
