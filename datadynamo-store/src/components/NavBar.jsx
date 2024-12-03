@@ -44,6 +44,9 @@ const NavBar = ({ user }) => {
       <div className="navbar-right">
         {user ? (
           <>
+            <Link to="/admin-dashboard" className='nav-link'>
+              Dashboard
+            </Link>
             <Link to="/profile" className="nav-link">
               Profiili
             </Link>

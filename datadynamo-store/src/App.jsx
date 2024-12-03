@@ -9,6 +9,7 @@ import Profile from './pages/Profile.jsx'
 import Welcome from './pages/Welcome.jsx'
 import Order from './pages/Order.jsx'
 import Endpage from './pages/Endpage.jsx'
+import AdminDashboard from './pages/AdminDashboard.jsx'
 
 import Navbar from './components/NavBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
@@ -123,6 +124,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <Payment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/admin-dashboard'
+            element={
+              <ProtectedRoute user={user}>
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />
