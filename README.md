@@ -1,5 +1,10 @@
 # Datadynamo
 
+## Projektin käynnistys
+ cd .\datadynamo-store\ -> npm i -> npm run dev
+ Toisessa terminaalissa:
+ cd .\datadynamo-store\ -> node  server.js
+
 ### Sähköpostin lähettämiseen tarvii demo oikeuden täältä:
 https://cors-anywhere.herokuapp.com/corsdemo
 
