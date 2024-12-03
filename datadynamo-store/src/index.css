@@ -747,3 +747,47 @@ form button:hover {
 .card-element-container input {
   color: var(--text-color);
 }
+
+
+/*ADMIN page*/
+.dashboard-container {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #2c2c3e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead th {
+  background-color: #3b3b5e;
+  color: #fff;
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #353547; 
+}
+
+tbody tr:hover {
+  background-color: #474760;
+}
+
+td:nth-child(3), td:nth-child(4) {
+  text-align: center;
+}
+
+td:last-child {
+  text-align: right;
+}
+
+}
