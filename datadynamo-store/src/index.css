@@ -758,18 +758,17 @@ form button:hover {
   color: var(--text-color);
 }
 
-
-/*ADMIN page*/
+/*ADMIN dashboard page*/
 .dashboard-container {
-  background-color: #1e1e2f; /* Tumma tausta */
-  color: #f0f0f0; /* Vaalea teksti */
+  background-color: var(--navbar-background);
+  color: var(--text-color); 
   padding: 20px;
   border-radius: 8px;
 }
 
 .dashboard-container h2 {
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--text-color);
   font-size: 24px;
   text-align: center;
   border-bottom: 2px solid #444;
@@ -780,15 +779,14 @@ form button:hover {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
-  background-color: #2c2c3e;
-  border: 1px solid #444;
+  background-color: var(--navbar-background);
   border-radius: 8px;
   table-layout: fixed;
 }
 
 thead th {
-  background-color: #3b3b5e;
-  color: #ffffff;
+  background-color: var(--navbar-background);
+  color: var(--text-color);
   text-align: left;
   padding: 12px;
   font-size: 16px;
@@ -801,54 +799,46 @@ tbody td {
   text-align: left;
 }
 
-th:nth-child(1), td:nth-child(1) { /* Nimi */
+th:nth-child(1), td:nth-child(1) { 
   width: 20%;
   text-align: left;
 }
 
-th:nth-child(2), td:nth-child(2) { /* Tuote */
+th:nth-child(2), td:nth-child(2) { 
   width: 20%;
   text-align: left;
 }
 
-th:nth-child(3), td:nth-child(3) { /* Koko */
+th:nth-child(3), td:nth-child(3) { 
   width: 10%;
   text-align: center;
 }
 
-th:nth-child(4), td:nth-child(4) { /* Määrä */
+th:nth-child(4), td:nth-child(4) { 
   width: 10%;
   text-align: center;
 }
 
-th:nth-child(5), td:nth-child(5) { /* Kokonaishinta */
+th:nth-child(5), td:nth-child(5) { 
   width: auto;
   text-align: center;
 }
 
-th:nth-child(6), td:nth-child(6) { /* Päivämäärä */
+th:nth-child(6), td:nth-child(6) { 
   width: 20%;
   text-align: right;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: #353547; 
 }
 
 tbody tr:hover {
   background-color: #474760;
 }
 
-
 /*admin kirjautuminen*/
-
 .password-container{
-  max-width: 400px;
-  width: 100%;
-  padding: 40px;
-  background-color: var(--navbar-background);
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  margin: 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
 }
