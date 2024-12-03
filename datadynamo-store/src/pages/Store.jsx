@@ -15,7 +15,6 @@ const Store = () => {
   const [size, setSize] = useState('')
   const [price, setPrice] = useState(0)
   const [mouseMatColor, setMouseMatColor] = useState('#080808')
-  const [showColorPicker, setShowColorPicker] = useState(false)
 
   const mouseMatRef = useRef(null)
 
@@ -86,10 +85,6 @@ const Store = () => {
     setDesignPosition({ x: 0, y: 0 })
     setDesignRotation(0)
   } 
-
-  const toggleColorPicker = () => {
-    setShowColorPicker(prevState => !prevState)
-  }
 
   const handleColorChange = (e) => {
     setMouseMatColor(e.target.value)
