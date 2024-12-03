@@ -8,7 +8,7 @@ import { supabase, sendConfirmationEmail } from '../services/supabase_client'
 const stripePromise = loadStripe('pk_test_51QRcKAFJyPUoiWyOfn7rJC4mznPSeGoaihQkISmwx9pFgq9SyFh5fU4mAxwsfxq6WeYrXly7sKswEInLTZEenuj300spVxytOA')
 
 const Payment = () => {
-  const [amount, setAmount] = useState(3000)  // amount can be dynamic based on order details
+  const [amount, setAmount] = useState(3000)
   const [loading, setLoading] = useState(false)
   const stripe = useStripe()
   const elements = useElements()
@@ -36,7 +36,7 @@ const Payment = () => {
             payment_method: {
                 card: elements.getElement(CardElement),
                 billing_details: {
-                    name: 'Customer',  // This could be dynamic if needed
+                    name: 'Customer',
                 },
             },
         })
@@ -45,16 +45,15 @@ const Payment = () => {
             console.error(error.message)
             alert(error.message)
         } else if (paymentIntent.status === 'succeeded') {
-            alert('Payment successful!')
+            alert('Maksu onnistui!')
 
-            // Now that the payment is successful, create the order in Supabase and send email
             const orderData = {
               name: user.name,
               email: user.email,
               address: user.address,
               city: user.city,
               product: "Hiirimatto",
-              size: size, // Ensure size, quantity, and price are passed here
+              size: size,
               quantity: quantity,
               price: totalPrice,
               payment_method: 'Pankkikortti',
@@ -71,7 +70,6 @@ const Payment = () => {
           return
       }
 
-            // Order created successfully, send confirmation email
     const emailResponse = await sendConfirmationEmail(data[0])
     if (emailResponse.error) {
         console.error(emailResponse.error)
@@ -79,7 +77,6 @@ const Payment = () => {
         console.log('Email sent successfully')
     }
 
-            // Pass the correct data (order details + price) to the Endpage
     setTimeout(() => {
       navigate('/endpage', { state: { order: data[0], price: totalPrice } })
   }, 300)
