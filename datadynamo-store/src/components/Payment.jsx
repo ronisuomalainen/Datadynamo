@@ -123,6 +123,8 @@ const Payment = () => {
           {loading ? 'Odota...' : 'Maksa nyt'}
         </button>
       </form>
+      <p><strong>Testikortin tiedot:</strong></p>
+      <p>4242 4242 4242 4242, 11/28, 123, 96300</p>
     </div>
   )
 }
