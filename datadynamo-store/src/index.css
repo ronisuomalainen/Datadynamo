@@ -830,7 +830,7 @@ th:nth-child(6), td:nth-child(6) {
 }
 
 tbody tr:hover {
-  background-color: #474760;
+  background-color: var(--button-hover-background);
 }
 
 /*admin kirjautuminen*/
