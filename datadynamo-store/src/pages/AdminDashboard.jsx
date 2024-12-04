@@ -17,7 +17,7 @@ const AdminDashboard = () => {
       .from('orders')
       .select('*')
       .order('created_at', { ascending: false })
-      .limit(10)
+      .limit(20)
 
     if (error) {
       console.error('Error fetching orders: ', error)
@@ -57,7 +57,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h2>Viimeiset 10 tilausta</h2>
+      <h2>Viimeiset 20 tilausta</h2>
       <table>
         <thead>
           <tr>
