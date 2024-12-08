@@ -1,48 +1,27 @@
 module.exports = {
     extends: [],
     rules: {
-        'header.min.length': [2, 'always', 20],
-        'header-case-start-capital': [2, 'always'],
-        'header-end-period': [2, 'always'],
+      // Ensure that the commit message starts with an uppercase letter
+      'header-first-uppercase': [2, 'always', /^[A-Z].*/],
+      
+      // Ensure the commit message is at least 10 characters long
+      'header-min-length': [2, 'always', 10]
     },
     plugins: [
-        'header-custom'  // Assuming you're registering a custom plugin with the name `header-custom`
-    ],
-    overrides: [
-        {
-            files: ['*'],  // Apply these rules to all files
-            rules: {
-                'header-case-start-capital': {
-                    create: function(context) {
-                        return {
-                            'commit-msg': function(node) {
-                                const message = node.value;
-                                if (!/^[A-Z]/.test(message)) {
-                                    context.report({
-                                        node,
-                                        message: 'Commit message must start with a capital letter'
-                                    });
-                                }
-                            }
-                        };
-                    }
-                },
-                'header-end-period': {
-                    create: function(context) {
-                        return {
-                            'commit-msg': function(node) {
-                                const message = node.value;
-                                if (!/\.$/.test(message)) {
-                                    context.report({
-                                        node,
-                                        message: 'Commit message must end with a period'
-                                    });
-                                }
-                            }
-                        };
-                    }
-                }
+      {
+        rules: {
+          // Custom rule to check for uppercase first letter
+          'header-first-uppercase': ({ raw }) => {
+            if (!/^[A-Z]/.test(raw)) {
+              return [
+                false,
+                'The first letter of the commit message must be uppercase'
+              ];
             }
-        }
-    ]
-};
+            return [true];
+          },
+        },
+      },
+    ],
+  };
+  
