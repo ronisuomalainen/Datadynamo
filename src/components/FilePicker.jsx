@@ -1,38 +1,39 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const FilePicker = ({ onFileSelect }) => {
-  const [file, setFile] = useState(null)
-  const fileInputRef = useRef(null)
+  const [file, setFile] = useState(null);
+  const fileInputRef = useRef(null);
 
-  const readFile = (type) => {
+  const readFile = () => {
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
 
       reader.onload = (event) => {
-        onFileSelect(event.target.result)
-        console.log('File loaded succesfully!')
-      }
+        onFileSelect(event.target.result);
+        console.log('File loaded successfully!');
+      };
 
       reader.onerror = () => {
-        console.error("Failed to read the file")
-      }
+        console.error('Failed to read the file');
+      };
 
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
     } else {
-      alert('Tiedostoa ei valittu')
+      alert('No file selected');
     }
-  }
+  };
 
   const clearFile = () => {
-    setFile(null)
+    setFile(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ''
+      fileInputRef.current.value = '';
     }
-    onFileSelect(null)
-  }
+    onFileSelect(null);
+  };
 
   return (
-    <div className='filepicker-container'>
+    <div className="filepicker-container">
       <div className="filepicker-input-section">
         <input
           id="file-upload"
@@ -43,16 +44,21 @@ const FilePicker = ({ onFileSelect }) => {
         />
       </div>
 
-      <div className='filepicker-button-container'>
-        <button className='filepicker-button' onClick={() => readFile(file)}>
-          Lisää kuva
+      <div className="filepicker-button-container">
+        <button className="filepicker-button" onClick={() => readFile(file)}>
+          Add Image
         </button>
-        <button className='filepicker-button' onClick={clearFile}>
-          Tyhjennä
+        <button className="filepicker-button" onClick={clearFile}>
+          Clear
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FilePicker
+// PropTypes validation for FilePicker component
+FilePicker.propTypes = {
+  onFileSelect: PropTypes.func.isRequired,
+};
+
+export default FilePicker;

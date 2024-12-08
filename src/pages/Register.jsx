@@ -1,44 +1,45 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { addUserToDb } from '../services/supabase_client'
-import '../index.css'
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { addUserToDb } from '../services/supabase_client';
+import '../index.css';
 
 const Register = () => {
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [confirmEmail, setConfirmEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (email !== confirmEmail) {
-      alert('Sähköpostiosoitteet eivät täsmää')
-      return
+      alert('Sähköpostiosoitteet eivät täsmää');
+      return;
     }
 
-    const { error } = await addUserToDb(email, password)
+    const { error } = await addUserToDb(email, password);
     if (error) {
-      alert('Rekisteröinti epäonnistui: ' + error)
+      alert('Rekisteröinti epäonnistui: ' + error);
     } else {
-      navigate('/store')
+      navigate('/store');
     }
-  }
+  };
 
   const handleClose = () => {
-    navigate('/')
-  }
+    navigate('/');
+  };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   return (
-    <div className='centered-container'>
+    <div className="centered-container">
       <div className="form-container">
-        
-        <button className='close-button' onClick={handleClose}>x</button>
+        <button className="close-button" onClick={handleClose}>
+          x
+        </button>
 
         <h2>Rekisteröidy</h2>
         <form onSubmit={handleSubmit}>
@@ -64,26 +65,30 @@ const Register = () => {
           </div>
           <div className="form-group">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               id="password"
               placeholder="Salasana"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="button" className="password-toggle" onClick={togglePasswordVisibility}>
-              {showPassword ? "Piilota" : "Näytä"}
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? 'Piilota' : 'Näytä'}
             </button>
           </div>
           <button type="submit">Rekisteröidy</button>
-          
-          <div className='login-text'>
+
+          <div className="login-text">
             <Link to="/login">Kirjaudu</Link>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

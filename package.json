@@ -4,15 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "lint": "eslint src --report-unused-disable-directives --max-warnings 0",
-  "lint:fix": "eslint src --fix",
-  "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html}'",
-  "preview": "vite preview",
-  "prepare": "husky install"
-},
-
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html}'",
+    "preview": "vite preview",
+    "prepare": "husky install"
+  },
   "dependencies": {
     "@sendgrid/mail": "^8.1.4",
     "@stripe/react-stripe-js": "^3.0.0",
@@ -21,6 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
@@ -50,14 +50,12 @@
       "pre-push": "npm run lint && npm run format"
     }
   },
-
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,css,html}": [
       "npm run lint",
       "npm run format"
     ]
   },
-
   "description": "",
   "main": "eslint.config.js",
   "keywords": [],

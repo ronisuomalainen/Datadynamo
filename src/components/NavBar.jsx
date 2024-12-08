@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import '../index.css'
-import { Link, useNavigate } from 'react-router-dom'
-import { supabase } from '../services/supabase_client'
+import { useState, useEffect } from 'react'; // Remove 'React' import
+import '../index.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '../services/supabase_client';
 
-import sunIcon from '../assets/sunicon.png'
-import moonIcon from '../assets/moonicon.png'
+import sunIcon from '../assets/sunicon.png';
+import moonIcon from '../assets/moonicon.png';
+
+import PropTypes from 'prop-types'; // Import PropTypes for prop validation
 
 const NavBar = ({ user }) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const handleLogout = async () => {
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-          console.error('Uloskirjautuminen ei onnistunut: ', error.message)
-      } else {
-          navigate('/')
-      }
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Uloskirjautuminen ei onnistunut: ', error.message);
+    } else {
+      navigate('/');
     }
+  };
 
-    // Lataa teema localStoragesta tai käytä oletuksena tummaa teemaa
+  // Lataa teema localStoragesta tai käytä oletuksena tummaa teemaa
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'dark';
   });
@@ -44,7 +46,7 @@ const NavBar = ({ user }) => {
       <div className="navbar-right">
         {user ? (
           <>
-            <Link to="/admin-dashboard" className='nav-link'>
+            <Link to="/admin-dashboard" className="nav-link">
               Dashboard
             </Link>
             <Link to="/profile" className="nav-link">
@@ -54,20 +56,25 @@ const NavBar = ({ user }) => {
               Kirjaudu ulos
             </button>
           </>
-        ): (
+        ) : (
           // If not logged in, show nothing or show other links as needed
           <></>
         )}
         <button onClick={toggleTheme} className="theme-toggle">
-          <img 
-            src={theme === 'dark' ? sunIcon : moonIcon} 
-            alt={theme === 'dark' ? 'Vaalea teema' : 'Tumma teema'} 
-            className="theme-icon" 
+          <img
+            src={theme === 'dark' ? sunIcon : moonIcon}
+            alt={theme === 'dark' ? 'Vaalea teema' : 'Tumma teema'}
+            className="theme-icon"
           />
         </button>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+// Prop validation
+NavBar.propTypes = {
+  user: PropTypes.object, // Assuming 'user' is an object, adjust if needed
+};
+
+export default NavBar;
