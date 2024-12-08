@@ -54,7 +54,8 @@ const Payment = () => {
           product: "Hiirimatto",
           size: size,
           quantity: quantity,
-          price: totalPrice,
+          price: price,
+          total_price: totalPrice,
           payment_method: 'Pankkikortti',
         }
 
@@ -80,7 +81,8 @@ const Payment = () => {
           navigate('/endpage', {
             state: {
               order: data[0],
-              price: totalPrice,
+              price: price,
+              totalPrice: totalPrice
             },
           })
         }, 300)

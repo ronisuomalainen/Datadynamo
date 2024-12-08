@@ -10,11 +10,11 @@ import Welcome from './pages/Welcome.jsx'
 import Order from './pages/Order.jsx'
 import Endpage from './pages/Endpage.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
+import Payment from './pages/Payment.jsx'
 
 import Navbar from './components/NavBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import GuestRoute from './components/GuestRoute.jsx'
-import Payment from './components/Payment.jsx'
 
 
 function App() {
