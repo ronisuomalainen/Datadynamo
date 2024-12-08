@@ -1,48 +1,48 @@
-import { useState, useEffect } from "react"
-import { supabase } from "../services/supabase_client"
+import { useState, useEffect } from 'react';
+import { supabase } from '../services/supabase_client';
 
 const AdminDashboard = () => {
-  const [password, setPassword] = useState('')
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [orders, setOrders] = useState([])
+  const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     if (isAuthenticated) {
-      fetchOrders()
+      fetchOrders();
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const fetchOrders = async () => {
     const { data, error } = await supabase
       .from('orders')
       .select('*')
       .order('created_at', { ascending: false })
-      .limit(20)
+      .limit(20);
 
     if (error) {
-      console.error('Error fetching orders: ', error)
+      console.error('Error fetching orders: ', error);
     } else {
-      setOrders(data)
+      setOrders(data);
     }
-  }
+  };
 
   const handlePasswordSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const adminPassword = 'admin123'
+    const adminPassword = 'admin123';
     if (password === adminPassword) {
-      setIsAuthenticated(true)
+      setIsAuthenticated(true);
     } else {
-      alert('Väärä salasana')
+      alert('Väärä salasana');
     }
-  }
-  
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="password-container">
         <h2>Admin Dashboard - Anna Salasana</h2>
         <form onSubmit={handlePasswordSubmit}>
-          <input 
+          <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
           <button type="submit">Ok</button>
         </form>
       </div>
-    )
+    );
   }
 
   return (
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDashboard
+export default AdminDashboard;

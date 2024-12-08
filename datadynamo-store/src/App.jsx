@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, Route, Routes } from 'react-router-dom'
-import { supabase } from './services/supabase_client.js'
+import { useEffect, useState } from 'react';
+import { useNavigate, Route, Routes } from 'react-router-dom';
+import { supabase } from './services/supabase_client.js';
 
+<<<<<<< Updated upstream
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Store from './pages/Store.jsx'
@@ -15,33 +16,52 @@ import Payment from './pages/Payment.jsx'
 import Navbar from './components/NavBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import GuestRoute from './components/GuestRoute.jsx'
+=======
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import Store from './pages/Store.jsx';
+import Profile from './pages/Profile.jsx';
+import Welcome from './pages/Welcome.jsx';
+import Order from './pages/Order.jsx';
+import Endpage from './pages/Endpage.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
+>>>>>>> Stashed changes
 
+import Navbar from './components/NavBar.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import GuestRoute from './components/GuestRoute.jsx';
+import Payment from './components/Payment.jsx';
 
 function App() {
-  const [user, setUser] = useState(null)
-  const navigate = useNavigate()
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await supabase.auth.getUser()
+      const { data } = await supabase.auth.getUser();
       if (data?.user) {
-        setUser(data.user)
+        setUser(data.user);
       }
-    }
+    };
 
-    getUser()
+    getUser();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-      if (!session?.user && !['/login', '/register'].includes(location.pathname)) {
-        navigate('/')
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+        if (
+          !session?.user &&
+          !['/login', '/register'].includes(location.pathname)
+        ) {
+          navigate('/');
+        }
       }
-    })
+    );
 
     return () => {
-      authListener?.subscription?.unsubscribe()
-    }
-  }, [navigate])
+      authListener?.subscription?.unsubscribe();
+    };
+  }, [navigate]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,10 +70,10 @@ function App() {
       } else {
         //console.log("Not logged in")
       }
-    }, 5000)
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [user])
+    return () => clearInterval(interval);
+  }, [user]);
 
   return (
     <>
@@ -61,29 +81,29 @@ function App() {
       <div className="main-container">
         <Routes>
           {/* Guest routes: only accessible if the user is not logged in */}
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               <GuestRoute user={user}>
                 <Welcome />
               </GuestRoute>
-            } 
+            }
           />
-          <Route 
-            path="/register" 
+          <Route
+            path="/register"
             element={
               <GuestRoute user={user}>
                 <Register />
               </GuestRoute>
-            } 
+            }
           />
-          <Route 
-            path="/login" 
+          <Route
+            path="/login"
             element={
               <GuestRoute user={user}>
                 <Login />
               </GuestRoute>
-            } 
+            }
           />
 
           {/* Protected routes: only accessible if the user is logged in */}
@@ -128,7 +148,7 @@ function App() {
             }
           />
           <Route
-            path='/admin-dashboard'
+            path="/admin-dashboard"
             element={
               <ProtectedRoute user={user}>
                 <AdminDashboard />
@@ -138,7 +158,7 @@ function App() {
         </Routes>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

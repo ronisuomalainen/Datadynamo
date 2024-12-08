@@ -1,12 +1,12 @@
 /* Global */
 :root {
-  --background-color: #11111B;
-  --navbar-background: #1A253A;
+  --background-color: #11111b;
+  --navbar-background: #1a253a;
   --text-color: lightgray;
   --input-background: #333344;
   --button-background: #4444cc;
   --button-hover-background: #6666ff;
-  --modal-background: #1A253A;
+  --modal-background: #1a253a;
   --button-text-color: white;
   --button-border-radius: 6px;
 }
@@ -27,7 +27,8 @@
   color: var(--text-color);
 }
 
-body, html {
+body,
+html {
   background-color: var(--background-color);
   margin: 0;
   padding: 0;
@@ -149,7 +150,7 @@ select {
 }
 
 /* Shared Button Styling */
-.form-container button[type="submit"] {
+.form-container button[type='submit'] {
   width: 100%;
   padding: 10px;
   color: var(--button-text-color);
@@ -161,11 +162,11 @@ select {
   transition: background-color 0.3s ease;
 }
 
-.form-container button[type="submit"]:hover {
+.form-container button[type='submit']:hover {
   background-color: var(--button-hover-background);
 }
 
-button[type="submit"] {
+button[type='submit'] {
   width: 100%;
   padding: 10px;
   color: var(--button-text-color);
@@ -178,7 +179,7 @@ button[type="submit"] {
   box-sizing: border-box;
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background-color: var(--button-hover-background);
 }
 
@@ -200,7 +201,8 @@ button[type="submit"]:hover {
 }
 
 /* Login / Register */
-.login-container, .register-container {
+.login-container,
+.register-container {
   max-width: 400px;
   width: 100%;
   padding: 40px;
@@ -211,7 +213,8 @@ button[type="submit"]:hover {
   position: relative;
 }
 
-.login-container h2, .register-container h2 {
+.login-container h2,
+.register-container h2 {
   text-align: center;
   margin-bottom: 20px;
   color: var(--text-color);
@@ -354,8 +357,8 @@ button[type="submit"]:hover {
 }
 
 .image-section img {
-  max-width: 80%;  
-  height: 80%;     
+  max-width: 80%;
+  height: 80%;
   border-radius: 5px;
   object-fit: contain;
 }
@@ -377,7 +380,7 @@ button[type="submit"]:hover {
   max-width: 100%;
 }
 
-input[type="color"] {
+input[type='color'] {
   position: relative;
   margin-top: 5px;
   z-index: 10;
@@ -452,7 +455,8 @@ input[type="color"] {
 }
 
 /* Buttons */
-.add_Picture, .purchase_Btn {
+.add_Picture,
+.purchase_Btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   font-size: 1.2rem;
@@ -466,12 +470,15 @@ input[type="color"] {
   margin-top: 20px;
 }
 
-.add_Picture:hover, .purchase_Btn:hover {
+.add_Picture:hover,
+.purchase_Btn:hover {
   background-color: var(--button-hover-background);
 }
 
 /* Order Page */
-form input, form select, form button {
+form input,
+form select,
+form button {
   width: 100%;
   margin-bottom: 15px;
   padding: 10px;
@@ -761,7 +768,7 @@ form button:hover {
 /*ADMIN dashboard page*/
 .dashboard-container {
   background-color: var(--navbar-background);
-  color: var(--text-color); 
+  color: var(--text-color);
   padding: 20px;
   border-radius: 8px;
 }
@@ -799,32 +806,38 @@ tbody td {
   text-align: left;
 }
 
-th:nth-child(1), td:nth-child(1) { 
+th:nth-child(1),
+td:nth-child(1) {
   width: 20%;
   text-align: left;
 }
 
-th:nth-child(2), td:nth-child(2) { 
+th:nth-child(2),
+td:nth-child(2) {
   width: 20%;
   text-align: left;
 }
 
-th:nth-child(3), td:nth-child(3) { 
+th:nth-child(3),
+td:nth-child(3) {
   width: 10%;
   text-align: center;
 }
 
-th:nth-child(4), td:nth-child(4) { 
+th:nth-child(4),
+td:nth-child(4) {
   width: 10%;
   text-align: center;
 }
 
-th:nth-child(5), td:nth-child(5) { 
+th:nth-child(5),
+td:nth-child(5) {
   width: auto;
   text-align: center;
 }
 
-th:nth-child(6), td:nth-child(6) { 
+th:nth-child(6),
+td:nth-child(6) {
   width: 20%;
   text-align: right;
 }
@@ -834,7 +847,7 @@ tbody tr:hover {
 }
 
 /*admin kirjautuminen*/
-.password-container{
+.password-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
