@@ -20,29 +20,6 @@ const Order = () => {
     payment: '',
   });
 
-<<<<<<< Updated upstream
-    const handleOrder = async (e) => {
-      e.preventDefault()
-  
-      navigate('/payment', {
-            state: { 
-                size,
-                price,
-                quantity,
-                totalPrice,
-                user: formData
-          }
-      })
-  }
-  
-    return (
-        <div className="form-container">
-            <h2>Tilauksen tiedot</h2>
-            <p><strong>Koko:</strong> {size}</p>
-            <p><strong>Yksikköhinta:</strong> {price}€</p>
-            <p><strong>Määrä:</strong> {quantity}</p>
-            <p><strong>Kokonaishinta:</strong> {totalPrice}€</p>
-=======
   useEffect(() => {
     const getUserData = async () => {
       const { data, error } = await supabase.auth.getUser();
@@ -57,7 +34,6 @@ const Order = () => {
     };
     getUserData();
   }, []);
->>>>>>> Stashed changes
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;

@@ -2,21 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Route, Routes } from 'react-router-dom';
 import { supabase } from './services/supabase_client.js';
 
-<<<<<<< Updated upstream
-import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
-import Store from './pages/Store.jsx'
-import Profile from './pages/Profile.jsx'
-import Welcome from './pages/Welcome.jsx'
-import Order from './pages/Order.jsx'
-import Endpage from './pages/Endpage.jsx'
-import AdminDashboard from './pages/AdminDashboard.jsx'
-import Payment from './pages/Payment.jsx'
-
-import Navbar from './components/NavBar.jsx'
-import ProtectedRoute from './components/ProtectedRoute.jsx'
-import GuestRoute from './components/GuestRoute.jsx'
-=======
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Store from './pages/Store.jsx';
@@ -25,12 +10,11 @@ import Welcome from './pages/Welcome.jsx';
 import Order from './pages/Order.jsx';
 import Endpage from './pages/Endpage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
->>>>>>> Stashed changes
-
+import Payment from './pages/Payment.jsx';
 import Navbar from './components/NavBar.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import GuestRoute from './components/GuestRoute.jsx';
-import Payment from './components/Payment.jsx';
+
 
 function App() {
   const [user, setUser] = useState(null);

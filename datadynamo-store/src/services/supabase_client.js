@@ -141,12 +141,7 @@ export async function deleteUser() {
 }
 
 export async function sendConfirmationEmail(order) {
-<<<<<<< Updated upstream
-  const { name, email, product, quantity, price, size, address, city } = order
-  const totalPrice = price * quantity
-=======
   const { name, email, product, quantity, price, size, address, city } = order;
->>>>>>> Stashed changes
 
   const emailContent = `
     <p>Hei ${name},</p>
@@ -156,7 +151,7 @@ export async function sendConfirmationEmail(order) {
       <li><strong>Tuote: </strong>${product}</li>
       <li><strong>Määrä: </strong>${quantity}</li>
       <li><strong>Koko: </strong>${size}</li>
-      <li><strong>Kokonaishinta: </strong>${totalPrice}€</li>
+      <li><strong>Hinta: </strong>${price}€</li>
       <li><strong>Toimitusosoite: </strong>${address}, ${city}</li>
     </ul>
     <p>Tilaus on käsittelyssä ja se lähetetään pian.</p>

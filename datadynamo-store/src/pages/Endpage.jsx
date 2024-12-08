@@ -5,25 +5,8 @@ const Endpage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-<<<<<<< Updated upstream
-    const order = location.state?.order
-    const price = location.state?.price
-
-    if (!order) {
-        return (
-			<div>
-				Error: No order data available.
-            	<button onClick={() => navigate('/store')} className='button'>Takaisin</button>
-			</div>
-		)
-    }
-
-    const { name, email, address, product, size, quantity, price: orderPrice } = order
-    const totalPrice = price * quantity
-=======
   const order = location.state?.order;
   const price = location.state?.price;
->>>>>>> Stashed changes
 
   if (!order) {
     return (
