@@ -15,7 +15,6 @@ import Navbar from './components/NavBar.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import GuestRoute from './components/GuestRoute.jsx';
 
-
 function App() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
