@@ -13,3 +13,9 @@ https://cors-anywhere.herokuapp.com/corsdemo
 
 ## Admin dashboard -salasana
 admin123
+
+## Git push powershellillä
+git status
+git add .
+git commit -m "Commitmsg"
+git push origin main
