@@ -142,7 +142,10 @@ export async function deleteUser() {
 
 export async function sendConfirmationEmail(order) {
   const { name, email, product, quantity, price, size, address, city } = order;
+<<<<<<< HEAD
   const totalPrice = price * quantity
+=======
+>>>>>>> 93e0d180c8d8f58677416f0b9e8900ef2aaca23f
 
   const emailContent = `
     <p>Hei ${name},</p>
@@ -152,7 +155,11 @@ export async function sendConfirmationEmail(order) {
       <li><strong>Tuote: </strong>${product}</li>
       <li><strong>Määrä: </strong>${quantity}</li>
       <li><strong>Koko: </strong>${size}</li>
+<<<<<<< HEAD
       <li><strong>Kokonaishinta: </strong>${totalPrice}€</li>
+=======
+      <li><strong>Hinta: </strong>${price}€</li>
+>>>>>>> 93e0d180c8d8f58677416f0b9e8900ef2aaca23f
       <li><strong>Toimitusosoite: </strong>${address}, ${city}</li>
     </ul>
     <p>Tilaus on käsittelyssä ja se lähetetään pian.</p>

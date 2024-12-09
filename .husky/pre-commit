@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
 echo "Pre-commit hook running: no tests to run"
 exit 0
+=======
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged
+>>>>>>> 93e0d180c8d8f58677416f0b9e8900ef2aaca23f
