@@ -19,3 +19,5 @@ git status
 git add .
 git commit -m "Commitmsg"
 git push origin main
+
+jotai random hommaa
