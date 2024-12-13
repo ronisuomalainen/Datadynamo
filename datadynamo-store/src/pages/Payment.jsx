@@ -13,7 +13,7 @@ const stripePromise = loadStripe(
   'pk_test_51QRcKAFJyPUoiWyOfn7rJC4mznPSeGoaihQkISmwx9pFgq9SyFh5fU4mAxwsfxq6WeYrXly7sKswEInLTZEenuj300spVxytOA'
 );
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://datadynamo-backend.onrender.com'
 
 const Payment = () => {
   const [amount, setAmount] = useState(0);

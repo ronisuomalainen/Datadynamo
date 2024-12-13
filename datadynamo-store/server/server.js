@@ -16,13 +16,15 @@ const stripe = stripeLib(process.env.STRIPE_SECRET_KEY)
 const app = express()
 app.use(cors({
   origin: [
-    'https://ronisuomalainen.github.io/Datadynamo/',
+    'https://ronisuomalainen.github.io',
     'http://localhost:5173'
   ],
   methods: ['GET', 'POST'],
   credentials: true
 }))
 app.use(express.json())
+
+const BACKEND_URL = 'https://datadynamo-backend.onrender.com/'
 
 app.post('/create-payment-intent', async (req, res) => {
   const { amount } = req.body
