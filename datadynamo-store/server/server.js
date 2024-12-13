@@ -3,7 +3,6 @@ import cors from 'cors'
 import stripeLib from 'stripe'
 import dotenv from 'dotenv'
 
-// Load environment variables
 dotenv.config()
 
 if (!process.env.STRIPE_SECRET_KEY) {
