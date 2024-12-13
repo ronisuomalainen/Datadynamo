@@ -1,25 +1,67 @@
 # Datadynamo
 
-## Projektin käynnistys
- cd .\datadynamo-store\ -> npm i -> npm run dev <br />
- Jos render.comin backend ei toimi, tee toisessa terminaalissa: <br />
- cd .\datadynamo-store\server\ -> node server.js
+## 🛠️ Projektin käynnistys
 
-## Sähköpostin lähettämiseen tarvii demo oikeuden täältä:
-https://cors-anywhere.herokuapp.com/corsdemo
+1. Asenna ja käynnistä frontend:   
+```bash
+   cd ./datadynamo-store/ ->
+   npm i ->
+   npm run dev   
+```
 
-## Stripen testikortin tiedot:
-4242 4242 4242 4242 + päivämäärä tulevaisuudessa + mikä tahansa 3 numeroinen koodi + mikä tahansa 5 numeroinen postinumero
+2. Jos render.comin backend ei toimi, käynnistä paikallinen backend (main branch):   
+```bash
+   cd ./datadynamo-store/server/ ->
+   node server.js   
+```
 
-## Admin dashboard -salasana
-admin123
+## 📧 Sähköpostitoiminnot
 
-## Git push powershellillä
+1. Hanki demo-oikeus [CORS Anywhere](https://cors-anywhere.herokuapp.com/corsdemo) -palvelusta
+2. Huom: Sähköpostin lähetys toimii vain:
+   - ✅ Paikallisessa ympäristössä (main branch)
+   - ❌ GitHub Pages -ympäristössä (master branch)
+
+## 💳 Stripe Testaus
+
+Käytä seuraavia testitietoja maksun testaamiseen:
+- Korttinumero: `4242 4242 4242 4242`
+- Voimassaoloaika: mikä tahansa tuleva päivämäärä
+- CVC: mikä tahansa 3-numeroinen koodi
+- Postinumero: mikä tahansa 5-numeroinen koodi
+
+> **Huom:** Ensimmäinen maksutapahtuma voi olla hitaampi, seuraavat nopeampia.
+
+## 🔐 Admin-käyttö
+
+Admin-hallintapaneelin salasana: `admin123`
+
+## 🔄 Git-komennot
+
+```bash
 git status
 git add .
 git commit -m "Commitmsg"
-git push origin main
+git push
+```
 
-Ci/Cd testaus toimii vain master branchilla
+## 🚀 CI/CD
 
-https://ronisuomalainen.github.io/Datadynamo/
+- CI/CD testaus toimii vain master-branchilla
+- Tuotantoversio: [https://ronisuomalainen.github.io/Datadynamo/](https://ronisuomalainen.github.io/Datadynamo/)
+
+## Kuvia
+![login](/images/image.png)
+Landingpage
+
+![main](/images/image-2.png)
+Etusivu, jossa voi muokata hiirimattoa ja tilausta.
+
+![admin](/images/image-3.png)
+Admin-hallintapaneeli
+
+![lightmode](/images/image-4.png)
+Jokaisesta sivusta löytyy vaalea ja tumma teema.
+
+## Author
+ © Datadynamo 2024
