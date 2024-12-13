@@ -20,4 +20,4 @@ git add .
 git commit -m "Commitmsg"
 git push origin main
 
-jotai random hommaa
+Ci/Cd testaus toimii vain master branchilla
