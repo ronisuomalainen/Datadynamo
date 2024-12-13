@@ -3,8 +3,16 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = 'https://diytkaysbvpowajpaies.supabase.co';
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
-console.log('Supabase URL exists:', !!supabaseUrl);
-console.log('Supabase Key exists:', !!supabaseKey);
+// Enhanced debug logs
+console.log('=== Supabase Configuration Debug ===');
+console.log('Supabase URL:', supabaseUrl ? 'exists' : 'missing');
+console.log(
+  'Supabase Key:',
+  supabaseKey ? `exists (${supabaseKey.slice(0, 4)}...)` : 'missing'
+);
+console.log('Environment:', import.meta.env.MODE);
+console.log('Base URL:', import.meta.env.BASE_URL);
+console.log('================================');
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error(
