@@ -30,6 +30,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Debug - Check env vars
+        run: |
+          if [ -n "$VITE_SUPABASE_KEY" ]; then echo "VITE_SUPABASE_KEY is set"; else echo "VITE_SUPABASE_KEY is NOT set!"; fi
+          if [ -n "$VITE_STRIPE_SECRET_KEY" ]; then echo "VITE_STRIPE_SECRET_KEY is set"; else echo "VITE_STRIPE_SECRET_KEY is NOT set!"; fi
+          if [ -n "$VITE_SENDGRID_API_KEY" ]; then echo "VITE_SENDGRID_API_KEY is set"; else echo "VITE_SENDGRID_API_KEY is NOT set!"; fi
+
       - name: Deploy to prod url
         if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@4.1.4
