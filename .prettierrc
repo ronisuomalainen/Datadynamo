@@ -4,5 +4,6 @@
     "singleQuote": true,
     "pringWidth": 80,
     "tabWidth": 2,
-    "useTabs": false
+    "useTabs": false,
+    "endOfLine": "lf"
 }

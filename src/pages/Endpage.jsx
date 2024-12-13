@@ -28,12 +28,7 @@ const Endpage = () => {
     quantity,
     price: orderPrice,
   } = order;
-<<<<<<< HEAD
-  
-  const totalPrice = price * quantity;
-=======
   const totalPrice = price || orderPrice || 0;
->>>>>>> 93e0d180c8d8f58677416f0b9e8900ef2aaca23f
 
   return (
     <div className="endpage-container">
