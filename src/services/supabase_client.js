@@ -4,19 +4,6 @@ const supabaseUrl = 'https://diytkaysbvpowajpaies.supabase.co';
 const supabaseKey =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpeXRrYXlzYnZwb3dhanBhaWVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEzMjAxNDAsImV4cCI6MjA0Njg5NjE0MH0.pNt_VUL56SUxgfpgf5JsDBimsWJZUPLiN2WUNxq7npI';
 
-// Enhanced debug logs
-console.log('=== Supabase Configuration Debug ===');
-console.log('Supabase URL:', supabaseUrl ? 'exists' : 'missing');
-console.log(
-  'Supabase Key:',
-  supabaseKey ? `exists (${supabaseKey.slice(0, 4)}...)` : 'missing'
-);
-console.log('Environment:', import.meta.env.MODE);
-console.log('Base URL:', import.meta.env.BASE_URL);
-console.log('================================');
-
-console.log('Actual Supabase Key:', supabaseKey);
-
 if (!supabaseUrl || !supabaseKey) {
   console.error('Missing Supabase configuration');
   throw new Error('Missing Supabase configuration');
