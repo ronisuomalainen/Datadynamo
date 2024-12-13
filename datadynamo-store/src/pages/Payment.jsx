@@ -6,13 +6,14 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase, sendConfirmationEmail } from '../services/supabase_client';
 
 const stripePromise = loadStripe(
   'pk_test_51QRcKAFJyPUoiWyOfn7rJC4mznPSeGoaihQkISmwx9pFgq9SyFh5fU4mAxwsfxq6WeYrXly7sKswEInLTZEenuj300spVxytOA'
 );
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
 
 const Payment = () => {
   const [amount, setAmount] = useState(0);
@@ -37,11 +38,24 @@ const Payment = () => {
     try {
       console.log('Payment amount: ', amount);
 
-      const response = await axios.post(
-        'http://localhost:4000/create-payment-intent',
-        { amount }
-      );
-      const clientSecret = response.data.clientSecret;
+      const response = await fetch(`${BACKEND_URL}/create-payment-intent`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ amount })
+      })
+      
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Payment intent creation failed')
+      }
+      
+      const data = await response.json()
+      if (!data.clientSecret) {
+        throw new Error('No client secret received')
+      }
+      const clientSecret = data.clientSecret
 
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,

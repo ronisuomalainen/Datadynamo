@@ -1,7 +1,16 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseUrl = 'https://diytkaysbvpowajpaies.supabase.co'
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
+
+// Debug logs
+console.log('Supabase URL exists:', !!supabaseUrl)
+console.log('Supabase Key exists:', !!supabaseKey)
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing Supabase configuration. Check your environment variables.')
+}
+
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
 const sendGridApiKey = import.meta.env.VITE_SENDGRID_API_KEY

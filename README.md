@@ -3,7 +3,7 @@
 ## Projektin käynnistys
  cd .\datadynamo-store\ -> npm i -> npm run dev <br />
  Toisessa terminaalissa: <br />
- cd .\datadynamo-store\ -> node server.js
+ cd .\datadynamo-store\server\ -> node server.js
 
 ## Sähköpostin lähettämiseen tarvii demo oikeuden täältä:
 https://cors-anywhere.herokuapp.com/corsdemo
@@ -21,3 +21,5 @@ git commit -m "Commitmsg"
 git push origin main
 
 Ci/Cd testaus toimii vain master branchilla
+
+https://ronisuomalainen.github.io/Datadynamo/
