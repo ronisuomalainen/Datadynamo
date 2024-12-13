@@ -5,9 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/Datadynamo/',
+  envPrefix: 'VITE_',
   define: {
-    'process.env.VITE_SUPABASE_KEY': JSON.stringify(process.env.VITE_SUPABASE_KEY),
-    'process.env.VITE_SENDGRID_API_KEY': JSON.stringify(process.env.VITE_SENDGRID_API_KEY),
-    'process.env.VITE_STRIPE_SECRET_KEY': JSON.stringify(process.env.VITE_STRIPE_SECRET_KEY)
+    'import.meta.env.VITE_SUPABASE_KEY': JSON.stringify(process.env.VITE_SUPABASE_KEY)
   }
 });
