@@ -43,9 +43,6 @@ const Order = () => {
   const handleOrder = async (e) => {
     e.preventDefault();
 
-    /*const product = "Hiirimatto"
-      const designUrl = ''*/
-
     navigate('/payment', {
       state: {
         size,
