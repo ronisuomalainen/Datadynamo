@@ -15,14 +15,11 @@ console.log('Environment:', import.meta.env.MODE);
 console.log('Base URL:', import.meta.env.BASE_URL);
 console.log('================================');
 
+console.log('Actual Supabase Key:', supabaseKey);
+
 if (!supabaseUrl || !supabaseKey) {
-  console.error('Missing Supabase configuration:', {
-    url: !!supabaseUrl,
-    key: !!supabaseKey,
-  });
-  throw new Error(
-    'Missing Supabase configuration. Check your environment variables.'
-  );
+  console.error('Missing Supabase configuration');
+  throw new Error('Missing Supabase configuration');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseKey);

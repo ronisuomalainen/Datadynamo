@@ -6,7 +6,4 @@ export default defineConfig({
   plugins: [react()],
   base: '/Datadynamo/',
   envPrefix: 'VITE_',
-  define: {
-    'import.meta.env.VITE_SUPABASE_KEY': JSON.stringify(process.env.VITE_SUPABASE_KEY)
-  }
 });
