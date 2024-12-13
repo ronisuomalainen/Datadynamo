@@ -30,6 +30,35 @@ jobs:
           echo "VITE_STRIPE_SECRET_KEY=${{ secrets.VITE_STRIPE_SECRET_KEY }}" >> .env
           echo "VITE_SENDGRID_API_KEY=${{ secrets.VITE_SENDGRID_API_KEY }}" >> .env
 
+      - name: Debug - Check env vars (detailed)
+        run: |
+          echo "Checking environment variables..."
+          
+          # Check Supabase
+          if [ -n "$VITE_SUPABASE_KEY" ]; then
+            echo "VITE_SUPABASE_KEY exists and is ${#VITE_SUPABASE_KEY} characters long"
+            echo "First 4 chars: ${VITE_SUPABASE_KEY:0:4}..."
+          else
+            echo "ERROR: VITE_SUPABASE_KEY is NOT set!"
+          fi
+          
+          # Check SendGrid
+          if [ -n "$VITE_SENDGRID_API_KEY" ]; then
+            echo "VITE_SENDGRID_API_KEY exists and is ${#VITE_SENDGRID_API_KEY} characters long"
+            echo "First 4 chars: ${VITE_SENDGRID_API_KEY:0:4}..."
+          else
+            echo "ERROR: VITE_SENDGRID_API_KEY is NOT set!"
+          fi
+          
+          # Check .env file
+          if [ -f ".env" ]; then
+            echo ".env file exists"
+            echo "Contents of .env (masked):"
+            sed 's/=.*/=****/' .env
+          else
+            echo "ERROR: .env file does NOT exist!"
+          fi
+
       - name: Install dependencies
         run: npm install
 
