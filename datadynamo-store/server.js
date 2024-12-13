@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const stripe = stripeLib(process.env.STRIPE_SECRET_KEY)
+const stripe = stripeLib(process.env.VITE_STRIPE_SECRET_KEY)
 
 const app = express()
 app.use(cors())
