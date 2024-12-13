@@ -9,5 +9,15 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function() {
+        const redirect = localStorage.getItem('path')
+        if (redirect) {
+          localStorage.removeItem('path')
+          const repoName = '/Datadynamo'
+          window.history.replaceState(null, null, repoName + redirect)
+        }
+      })()
+    </script>
   </body>
 </html>
