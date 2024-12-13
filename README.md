@@ -2,7 +2,7 @@
 
 ## Projektin käynnistys
  cd .\datadynamo-store\ -> npm i -> npm run dev <br />
- Toisessa terminaalissa: <br />
+ Jos render.comin backend ei toimi, tee toisessa terminaalissa: <br />
  cd .\datadynamo-store\server\ -> node server.js
 
 ## Sähköpostin lähettämiseen tarvii demo oikeuden täältä:
