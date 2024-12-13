@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Route, Routes } from 'react-router-dom';
+import { useNavigate, Route, Routes, Navigate } from 'react-router-dom';
 import { supabase } from './services/supabase_client.js';
 
 import Login from './pages/Login.jsx';
@@ -63,6 +63,8 @@ function App() {
       <Navbar user={user} />
       <div className="main-container">
         <Routes>
+          {/* Redirect from /Datadynamo to / */}
+          <Route path="/Datadynamo" element={<Navigate to="/" replace />} />
           {/* Guest routes: only accessible if the user is not logged in */}
           <Route
             path="/"
