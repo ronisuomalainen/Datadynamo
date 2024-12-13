@@ -65,4 +65,3 @@ Jokaisesta sivusta löytyy vaalea ja tumma teema.
 
 ## Author
  © Datadynamo 2024
-s
