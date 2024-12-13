@@ -15,6 +15,10 @@ console.log('Base URL:', import.meta.env.BASE_URL);
 console.log('================================');
 
 if (!supabaseUrl || !supabaseKey) {
+  console.error('Missing Supabase configuration:', {
+    url: !!supabaseUrl,
+    key: !!supabaseKey,
+  });
   throw new Error(
     'Missing Supabase configuration. Check your environment variables.'
   );
