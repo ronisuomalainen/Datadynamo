@@ -1,9 +1,24 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://diytkaysbvpowajpaies.supabase.co';
-const supabaseKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpeXRrYXlzYnZwb3dhanBhaWVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEzMjAxNDAsImV4cCI6MjA0Njg5NjE0MH0.pNt_VUL56SUxgfpgf5JsDBimsWJZUPLiN2WUNxq7npI';
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
+
+console.log('Supabase URL exists:', !!supabaseUrl);
+console.log('Supabase Key exists:', !!supabaseKey);
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error(
+    'Missing Supabase configuration. Check your environment variables.'
+  );
+}
+
 export const supabase = createClient(supabaseUrl, supabaseKey);
+
+const sendGridApiKey = import.meta.env.VITE_SENDGRID_API_KEY;
+
+if (!sendGridApiKey) {
+  console.error('Missing SendGrid API key. Check your environment variables.');
+}
 
 export async function addUserToDb(email, password) {
   try {
@@ -168,7 +183,7 @@ export async function sendConfirmationEmail(order) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer ${sendGridApiKey}`,
       },
       body: JSON.stringify({
         personalizations: [
