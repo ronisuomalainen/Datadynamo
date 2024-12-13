@@ -52,16 +52,6 @@ const Profile = () => {
     }
   };
 
-  const handleDeleteUser = async () => {
-    const { success, error } = await deleteUser();
-    if (error) {
-      alert('Käyttäjän poisto epäonnistui: ' + error);
-    } else {
-      alert(success);
-      navigate('/login');
-    }
-  };
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -122,23 +112,6 @@ const Profile = () => {
             </div>
             <button type="submit">OK</button>
           </form>
-        </div>
-
-        <div className="profile-form form-container">
-          <h2>Poista käyttäjätili</h2>
-          <button type="submit" onClick={showModal}>
-            Poista
-          </button>
-          {isModalVisible && (
-            <div className="modal show">
-              <div className="modal-overlay" onClick={hideModal}></div>
-              <div className="modal-content">
-                <h2>Oletko varma, että haluat poistaa tilisi?</h2>
-                <button onClick={hideModal}>Peruuta</button>
-                <button onClick={handleDeleteUser}>Poista tilini</button>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
