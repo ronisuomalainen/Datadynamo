@@ -15,12 +15,13 @@
    node server.js   
 ```
 
-## 📧 Sähköpostitoiminnot
+## 📧 Vahvistus-sähköpostitoiminnot
 
 1. Hanki demo-oikeus [CORS Anywhere](https://cors-anywhere.herokuapp.com/corsdemo) -palvelusta
 2. Huom: Sähköpostin lähetys toimii vain:
    - ✅ Paikallisessa ympäristössä (main branch)
    - ❌ GitHub Pages -ympäristössä (master branch)
+      - Koska ei saatu Github Pages -ympäristömuuttujia toimimaan.
 
 ## 💳 Stripe Testaus
 
@@ -30,7 +31,7 @@ Käytä seuraavia testitietoja maksun testaamiseen:
 - CVC: mikä tahansa 3-numeroinen koodi
 - Postinumero: mikä tahansa 5-numeroinen koodi
 
-> **Huom:** Ensimmäinen maksutapahtuma voi olla hitaampi, seuraavat nopeampia.
+> **Huom:** Ensimmäinen maksutapahtuma voi olla hitaampi, koska Render.comissa meillä on ilmainen tier.
 
 ## 🔐 Admin-käyttö
 
