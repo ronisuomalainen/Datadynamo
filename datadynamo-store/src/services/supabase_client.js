@@ -3,10 +3,6 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = 'https://diytkaysbvpowajpaies.supabase.co'
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
 
-// Debug logs
-console.log('Supabase URL exists:', !!supabaseUrl)
-console.log('Supabase Key exists:', !!supabaseKey)
-
 if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase configuration. Check your environment variables.')
 }
