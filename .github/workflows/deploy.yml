@@ -25,6 +25,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_SENDGRID_API_KEY: ${{ secrets.VITE_SENDGRID_API_KEY }}
       
       - name: Deploy to prod url
         if: github.ref == 'refs/heads/master'
